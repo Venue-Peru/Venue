@@ -4,11 +4,11 @@ export default {
   data() {
     return {
       options: [
-        { label: '¿Quiénes Somos?', link: '' },
-        { label: '¿Cómo?', link: '' },
-        { label: 'FAQs', link: '' },
-        { label: 'Contáctanos', link: '' },
-        { label: 'Explorar', link: '' },
+        { label: '¿Quiénes Somos?', id: '' },
+        { label: '¿Cómo?', id: '' },
+        { label: 'FAQs', id: '' },
+        { label: 'Contáctanos', id: '' },
+        { label: 'Explorar', id: '' },
       ]
     }
   },
@@ -22,13 +22,13 @@ export default {
 </script>
 
 <template>
-  <pv-toolbar class="bg-primary">
+  <pv-toolbar class="bg-gray-900">
     <template #start>
-      <span>Venue</span>
+      <img height="80" src="../../assets/venue.png" alt="Venue">
     </template>
     <template #end>
-      <a v-for="option of options" :href="idHref(option.link)">
-        <pv-button :label="option.label"></pv-button>
+      <a v-for="(option,index) of options" :href="idHref(option.id)">
+        <pv-button :label="option.label" severity="secondary" :class="index === options.length - 1 ? '' : 'mr-2'"></pv-button>
       </a>
     </template>
   </pv-toolbar>
