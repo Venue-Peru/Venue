@@ -1,0 +1,19 @@
+<div>
+  <h3>General Info</h3>
+  <div class="flex align-items-center px-2" style="background-color: #f0f8ff;">
+    <i class="pi pi-calendar mr-2"></i>
+    <p>Date: {{event.date | date: 'dd/MM/yyyy'}}</p>
+  </div>
+  <div class="flex align-items-center px-2" style="background-color: #faebd7;">
+    <i class="pi pi-map-marker mr-2"></i>
+    <p>Location: {{event.venueLocation}}</p>
+  </div>
+  <div class="flex align-items-center px-2" style="background-color: #ffe4e1;">
+    <i class="pi pi-tag mr-2"></i>
+    <p>Dress Code: {{event.dressCode}}</p>
+  </div>
+  <div class="flex align-items-center px-2" style="background-color: #f5f5dc;">
+    <i class="pi pi-exclamation-circle mr-2"></i>
+    <p>Age Restriction: {{event.ageRestriction}}</p>
+  </div>
+</div>

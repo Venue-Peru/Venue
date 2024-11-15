@@ -1,0 +1,105 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "fullName": "Maria Rodriguez",
+      "age": 20,
+      "friendCount": 204,
+      "friendsInCommon": 12,
+      "instagramUrl": "@maria.rodriguez",
+      "tikTokUrl": "@maria_rodriguez",
+      "backgroundImage": "https://t4.ftcdn.net/jpg/05/49/86/39/360_F_549863991_6yPKI08MG7JiZX83tMHlhDtd6XLFAMce.jpg",
+      "profileImage": "https://imgcdn.stablediffusionweb.com/2024/6/12/4d688bcf-f53b-42b6-a98d-3254619f3b58.jpg"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "profileImage": "https://imgcdn.stablediffusionweb.com/2024/6/12/4d688bcf-f53b-42b6-a98d-3254619f3b58.jpg",
+      "fullName": "Maria Rodriguez",
+      "time": "12 hours ago",
+      "hostImage": "https://logodix.com/logo/1594198.jpg",
+      "sessionName": "Reggaeton Blast",
+      "content": "Had an amazing time at Reggaeton Blast last night! The music was on point, and the energy was incredible. Can't wait for the next event!",
+      "photos": [
+        "https://as2.ftcdn.net/v2/jpg/00/91/03/83/1000_F_91038333_C6b2EeBuxMcVjJpvdtdG2dMZijoSUkDX.jpg",
+        "https://images.squarespace-cdn.com/content/v1/59de7a9c8419c2910242dc68/1515088452816-FV9AJIZDX9LAACJ3QJE4/150-7P9A1646-.jpg",
+        "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?cs=srgb&dl=pexels-vishnurnair-1105666.jpg&fm=jpg",
+        "https://www.studentuniverse.com/blog/wp-content/uploads/2023/07/top-party-destinations-scaled.jpeg"
+      ],
+      "likes": 120,
+      "views": 340
+    },
+    {
+      "id": 2,
+      "profileImage": "https://imgcdn.stablediffusionweb.com/2024/6/12/4d688bcf-f53b-42b6-a98d-3254619f3b58.jpg",
+      "fullName": "Maria Rodriguez",
+      "time": "8 days ago",
+      "hostImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20l72_ZH-xEHD-UlmqN7MRWxY_5-xyma_VZkL_HHGdrwsJGty96o25zBHcHZ2krPIGdM&usqp=CAU",
+      "sessionName": "House Fusion",
+      "content": "Had an amazing time at Reggaeton Blast last night! The music was on point, and the energy was incredible. Can't wait for the next event!",
+      "photos": [
+        "https://as2.ftcdn.net/v2/jpg/00/91/03/83/1000_F_91038333_C6b2EeBuxMcVjJpvdtdG2dMZijoSUkDX.jpg",
+        "https://www.studentuniverse.com/blog/wp-content/uploads/2023/07/top-party-destinations-scaled.jpeg",
+        "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?cs=srgb&dl=pexels-vishnurnair-1105666.jpg&fm=jpg",
+        "https://images.squarespace-cdn.com/content/v1/59de7a9c8419c2910242dc68/1515088452816-FV9AJIZDX9LAACJ3QJE4/150-7P9A1646-.jpg"
+      ],
+      "likes": 120,
+      "views": 340
+    }
+  ],
+  "hosts": [
+    {
+      "id": 1,
+      "name": "Apolo",
+      "location": "Av. Pardo 610, Miraflores",
+      "capacity": 400,
+      "rating": 4,
+      "socialMedia": {
+        "instagramUrl": "@apolo.lima",
+        "tikTokUrl": "@apolo_vibes"
+      },
+      "description": "Apolo is one of the most popular reggaeton clubs in Miraflores, known for its contagious energy and modern atmosphere. With a spacious dance floor and state-of-the-art sound system, it is the perfect place to enjoy the latest reggaeton hits in a vibrant and social setting."
+    },
+    {
+      "id": 2,
+      "name": "Bembos Club",
+      "location": "Av. Jos\u00e9 Larco 812, Miraflores",
+      "capacity": 300,
+      "rating": 4,
+      "socialMedia": {
+        "instagramUrl": "@bembosclub",
+        "tikTokUrl": "@bembos_experience"
+      },
+      "description": "Bembos Club is known for its vibrant atmosphere and its reggaeton and trap events that attract an enthusiastic crowd. The club offers a modern ambiance with a large dance floor and drink promotions that enhance the musical experience."
+    },
+    {
+      "id": 3,
+      "name": "La C\u00fapula",
+      "location": "Av. La Marina 2200, San Miguel",
+      "capacity": 500,
+      "rating": 5,
+      "socialMedia": {
+        "instagramUrl": "@lacupula_lima",
+        "tikTokUrl": "@lacupula_events"
+      },
+      "description": "La C\u00fapula is the go-to spot for electronic music lovers in Lima. With a modern design, spectacular lighting, and high-quality acoustics, it offers a unique nightlife experience to enjoy the best house and electronic mixes."
+    }
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "hostId": 1,
+      "sessionImage": "https://as2.ftcdn.net/v2/jpg/00/91/03/83/1000_F_91038333_C6b2EeBuxMcVjJpvdtdG2dMZijoSUkDX.jpg",
+      "hostImage": "https://logodix.com/logo/1594198.jpg",
+      "name": "CamelPhat",
+      "hostName": "Pacha",
+      "location": "Av. Pardo 610, Miraflores",
+      "date": "2024-09-15",
+      "time": "Empezando 10:00 PM",
+      "description": "Enjoy a night with the greatest reggaeton hits. DJ Kiko will energize the evening with his catchiest mixes, while the club offers special drink promotions for early arrivals.",
+      "dressCode": "Casual",
+      "musicType": "Reggaeton"
+    }
+  ]
+}

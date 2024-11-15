@@ -1,0 +1,23 @@
+* {
+  color: white;
+  font-family: "Noto Sans Caucasian Albanian", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.back {
+  background-color: black;
+}
+
+p {
+  background: none;
+}
+
+.grid {
+  margin: 0;
+  padding: 0;
+}

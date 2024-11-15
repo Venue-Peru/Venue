@@ -1,0 +1,43 @@
+<div class="grid">
+  <div class="flex justify-content-center align-items-center p-6 left-side col-6">
+    <p>Image</p>
+  </div>
+  <div class="flex justify-content-center align-items-center p-6 col-6" style="height: 100vh">
+    <div class="">
+      <div class="flex justify-content-center align-items-center p-2">
+        <h1>Venue.</h1>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="text" placeholder="Correo electrónico" [(ngModel)]="signUpForm.email" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="text" placeholder="Usuario" [(ngModel)]="signUpForm.username" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="password" placeholder="Contraseña" [(ngModel)]="signUpForm.password" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="text" placeholder="Nombre" [(ngModel)]="signUpForm.firstName" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="text" placeholder="Apellido" [(ngModel)]="signUpForm.lastName" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-1">
+        <input pInputText type="text" placeholder="DNI" [(ngModel)]="signUpForm.identityCard" style="width: 18rem"/>
+      </div>
+      <div class="flex justify-content-center align-items-center p-2">
+        <p-button label="Registrarse" (click)="onRegister()" class="custom-button"></p-button>
+      </div>
+      <div class="flex justify-content-center align-items-center p-2">
+        <p class="really-tiny">¿Ya tienes una cuenta? <span (click)="onToLogin()" style="cursor: pointer; color: #00bbff">Ingresa aquí.</span></p>
+      </div>
+      <div class="flex justify-content-center align-items-center pt-6">
+        <p class="really-tiny">Obtén la app</p>
+      </div>
+      <div class="flex justify-content-center align-items-center p-2 gap-1">
+        <img src="prototype-Download_on_the_App_Store_Badge.svg" alt="google play badge" style="width: 8rem"/>
+        <img src="prototype-Google_Play_Store_badge_EN.svg" alt="app store badge" style="width: 8rem"/>
+      </div>
+    </div>
+  </div>
+</div>

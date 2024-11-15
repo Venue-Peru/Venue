@@ -1,0 +1,26 @@
+* {
+  background-color: black;
+  color: white;
+  font-family: "Noto Sans Caucasian Albanian", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.grid {
+  margin: 0;
+  padding: 0;
+}
+
+.really-tiny {
+  font-size: 0.7rem;
+}
+
+:host ::ng-deep .p-button {
+  width: 18rem;
+}
+
+.custom-button-primary {
+  background-color: #4CAF50 !important;
+  border-color: #4CAF50 !important;
+  color: white !important;
+}

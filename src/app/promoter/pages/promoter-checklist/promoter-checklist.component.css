@@ -1,0 +1,36 @@
+input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+/* Paginator custom styles */
+.paginator-custom .p-paginator {
+  background-color: black;
+  color: white;
+}
+
+/* Style paginator text and buttons */
+.paginator-custom .p-paginator .p-paginator-pages .p-paginator-page,
+.paginator-custom .p-paginator .p-dropdown,
+.paginator-custom .p-paginator .p-paginator-icon,
+.paginator-custom .p-paginator .p-dropdown-label,
+.paginator-custom .p-paginator .p-paginator-current {
+  color: white;
+  background-color: black;
+  border-color: white;
+}
+
+/* Hover and active states */
+.paginator-custom .p-paginator .p-paginator-page:hover,
+.paginator-custom .p-paginator .p-paginator-icon:hover,
+.paginator-custom .p-paginator .p-dropdown-label:hover {
+  color: black;
+  background-color: white;
+  border-color: white;
+}
+
+/* Style for active page */
+.paginator-custom .p-paginator .p-paginator-page.p-highlight {
+  color: black;
+  background-color: white;
+}
