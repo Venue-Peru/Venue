@@ -37,6 +37,10 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import {RadioButtonModule} from "primeng/radiobutton";
 import {AuthInterceptor} from "./iam/services/auth.interceptor";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
+import {CalendarModule} from "primeng/calendar";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 @NgModule({
   declarations: [
@@ -75,7 +79,10 @@ import {AuthInterceptor} from "./iam/services/auth.interceptor";
         PaginatorModule,
         BrowserAnimationsModule,
         ProgressSpinnerModule,
-        RadioButtonModule
+        RadioButtonModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        CalendarModule,
+        InputTextareaModule
     ],
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),

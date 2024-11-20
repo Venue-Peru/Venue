@@ -12,7 +12,7 @@ export class ProfilesService extends BaseService<Profile> {
     this.resourceEndpoint = "profiles";
   }
 
-  getById(id: number) {
-    return this.http.get<Profile>(`${this.basePath}${this.resourceEndpoint}/${id}`).pipe();
+  getByUUID(uuid: number) {
+    return this.http.get<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}`).pipe();
   }
 }

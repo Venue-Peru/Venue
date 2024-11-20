@@ -2,27 +2,33 @@
 <app-no-internet *ngIf="start == null"/>
 <div *ngIf="start">
   <div class="absolute flex" style="margin-top: 6rem; margin-left: 2rem">
-    <img [src]="profile.profileImage" [alt]="profile.fullName"
+    <div class="absolute" style="pointer-events: none;">
+      <div *ngIf="isThisUser" (click)="openEditDialog()" class="flex align-items-center justify-content-center"
+           style="pointer-events: all; cursor: pointer; margin-top: 8rem; margin-left: 9rem; width: 3rem; height: 3rem; border-radius: 1.5rem; background-color: white">
+        <i class="pi pi-pencil" style="font-size: 1.5rem; color: black"></i>
+      </div>
+    </div>
+    <img src="https://avatars.githubusercontent.com/u/56156010?v=4" [alt]="profile.username" [style]="'cursor: pointer'"
          style="height: 12rem; border-radius: 50%">
   </div>
   <div class="h-12rem flex">
-    <img [src]="profile.backgroundImage" [alt]="profile.fullName"
+    <img src="https://avatars.githubusercontent.com/u/56156010?v=4" [alt]="profile.username" [style]="'cursor: pointer'"
          class="w-screen h-full" style="object-fit: cover; object-position: center;" />
   </div>
   <div class="h-10rem" style="background-color: #171717">
     <div style="padding-left: 15rem; padding-top: 1rem">
       <div class="flex justify-content-between">
         <div>
-          <h2 class="text-white">{{ profile.fullName }}</h2>
-          <p class="text-white">{{ profile.age }} años</p>
+          <h2 class="text-white">{{ profile.username }}</h2>
+          <p class="text-white">{{ 18 }} años</p>
         </div>
         <div class="flex gap-4 pr-4">
           <div class="text-center">
-            <h2 class="text-white">{{ profile.friendCount }}</h2>
+            <h2 class="text-white">{{ 2 }}</h2>
             <p class="text-white">Amigos</p>
           </div>
           <div class="text-center">
-            <h2 class="text-white">{{ profile.friendsInCommon }}</h2>
+            <h2 class="text-white">{{ 2 }}</h2>
             <p class="text-white">Amigos en Común</p>
           </div>
         </div>
@@ -35,6 +41,7 @@
           <p-button label="TikTok" class="p-button-raised p-button-rounded"></p-button>
         </div>
         <div class="flex gap-2 pr-2">
+          <p-button *ngIf="isThisUser" label="Editar Perfil" class="p-button-raised p-button-rounded"></p-button>
           <p-button label="Agregar Amigo" class="p-button-raised p-button-rounded"></p-button>
           <p-button label="Bloquear" class="p-button-raised p-button-rounded"></p-button>
         </div>
@@ -81,3 +88,88 @@
     </div>
   </div>
 </div>
+
+<p-dialog
+  [(visible)]="editDialogVisible"
+  [modal]="true"
+  [style]="{width: '450px'}"
+  [draggable]="false"
+  [resizable]="false"
+  header="Edit profile"
+  [closeOnEscape]="true"
+  [closable]="true"
+  >
+  <form (ngSubmit)="editDialogSubmit()" #profileForm="ngForm">
+    <div class="grid">
+      <div class="col-12 mb-3">
+        <label for="name" class="block mb-2">Name</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="editDialogData.name"
+          name="name"
+          class="w-full"
+          required
+        >
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="username" class="block mb-2">Username</label>
+        <input
+          id="username"
+          type="text"
+          pInputText
+          [(ngModel)]="editDialogData.username"
+          name="username"
+          class="w-full"
+          required
+        >
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="bio" class="block mb-2">Bio</label>
+        <textarea
+          id="bio"
+          pInputTextarea
+          [(ngModel)]="editDialogData.bio"
+          name="bio"
+          [autoResize]="true"
+          [rows]="3"
+          class="w-full"
+        ></textarea>
+      </div>
+
+
+      <div class="col-12 mb-3">
+        <label for="birthdate" class="block mb-2">Birth date</label>
+        <p-calendar
+          id="birthdate"
+          [(ngModel)]="editDialogData.birthdate"
+          name="birthdate"
+          [showIcon]="true"
+          dateFormat="yy-mm-dd"
+          [readonlyInput]="true"
+          class="w-full"
+        ></p-calendar>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end">
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
+        (onClick)="editDialogCancel()"
+        styleClass="p-button-text"
+      ></p-button>
+      <p-button
+        label="Guardar"
+        icon="pi pi-check"
+        (onClick)="editDialogSubmit()"
+        [disabled]="!profileForm.form.valid"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

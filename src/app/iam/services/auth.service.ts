@@ -32,7 +32,7 @@ export class AuthService {
    * @param signUpRequest - The {@link SignUpRequest} object
    */
   signUp(signUpRequest: SignUpRequest) {
-    return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`,
+    return this.http.post<SignUpResponse>(`${this.basePath}authentication/sign-up`,
       signUpRequest, this.httpOptions)
   .subscribe({
         next: (response) => {
@@ -57,7 +57,7 @@ export class AuthService {
    */
   signIn(signInRequest: SignInRequest) {
     console.log(`Signing in as ${signInRequest.username}`);
-    return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`,
+    return this.http.post<SignInResponse>(`${this.basePath}authentication/sign-in`,
       signInRequest, this.httpOptions)
   .subscribe({
         next: (response) => {
