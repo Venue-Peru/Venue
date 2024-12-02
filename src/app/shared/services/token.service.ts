@@ -18,5 +18,11 @@ export class TokenService {
     const decoded = this.decodeToken(token);
     return decoded?.uuid || null; // Adjust the key name based on your token's payload
   }
+
+  getRoleFromToken(token: string): string {
+    const decoded = this.decodeToken(token);
+    return decoded?.role || ''; // Adjust the key name based on your token's payload
+  }
+
   constructor() { }
 }

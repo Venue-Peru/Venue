@@ -11,6 +11,10 @@ import {PromoterChecklistComponent} from "./promoter/pages/promoter-checklist/pr
 import {LoginComponent} from "./iam/pages/login/login.component";
 import {RegisterComponent} from "./iam/pages/register/register.component";
 import {ItMainPageComponent} from "./shared/pages/it-main-page/it-main-page.component";
+import {HostVisitorComponent} from "./host/pages/host-visitor/host-visitor.component";
+import {HostDashboardComponent} from "./host/pages/host-dashboard/host-dashboard.component";
+import {CreateSessionComponent} from "./host/pages/create-session/create-session.component";
+import {MySessionsComponent} from "./host/pages/my-sessions/my-sessions.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,12 +22,18 @@ const routes: Routes = [
   // EventViewComponent is the old SessionVisitorComponent and must be deleted
   { path: 'tickets-and-sessions', component: MainPagesComponent, children: [
       { path: '', pathMatch: "full", component: ItMainPageComponent },
-      { path: 'events', component: SessionVisitorComponent },
+      { path: 'events/:eventId', component: SessionVisitorComponent },
+      { path: 'host/:hostId', component: HostVisitorComponent },
       { path: 'view/:eventId', component: ProfileVisitorComponent },
-      { path: 'tickets-tracking', component: MyWristbandsComponent },
       { path: 'qr-code/:wristbandId', component: SessionTicketComponent },
       { path: 'promoter-checklist', component: PromoterChecklistComponent },
       { path: 'ask-promoter', component: PromoterChecklistComponent },
+      // user-only routes
+      { path: 'my-wristbands', component: MyWristbandsComponent },
+      // host-only routes
+      { path: 'work/dashboard', component: HostDashboardComponent },
+      { path: 'work/dashboard/create-session', component: CreateSessionComponent },
+      { path: 'work/dashboard/my-sessions', component: MySessionsComponent },
     ]},
 ];
 

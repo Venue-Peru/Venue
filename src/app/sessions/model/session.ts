@@ -11,8 +11,9 @@ export class Session {
   description: string;
   dj: string;
   dressCode: string;
-  ageMinimum: string;
+  ageMinimum: number;
   musicType: string;
+  uuid: string;
 
   constructor() {
     this.id = 0;
@@ -27,7 +28,8 @@ export class Session {
     this.description = '';
     this.dj = '';
     this.dressCode = '';
-    this.ageMinimum = '';
+    this.ageMinimum = 0;
     this.musicType = '';
+    this.uuid = '';
   }
 }

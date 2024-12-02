@@ -15,4 +15,16 @@ export class ProfilesService extends BaseService<Profile> {
   getByUUID(uuid: number) {
     return this.http.get<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}`).pipe();
   }
+
+  getByUUIDWithString(uuid: String) {
+    return this.http.get<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}`).pipe();
+  }
+
+  updateBackground(uuid: String, background: String) {
+    return this.http.put<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}/background`, {background}).pipe();
+  }
+
+  updateIcon(uuid: String, icon: String) {
+    return this.http.put<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}/icon`, {icon}).pipe();
+  }
 }

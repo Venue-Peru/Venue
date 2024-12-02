@@ -1,6 +1,8 @@
+
 <app-loading *ngIf="start == false"/>
 <app-no-internet *ngIf="start == null"/>
-<div *ngIf="start" class="back">
+
+<div class="back" *ngIf="start == true">
   <div class="grid" style="width: 100%">
     <div class="absolute flex justify-content-center" style="width: 100%">
       <img [src]="session.hostImage" [alt]="session.hostName" style="margin-top: 2rem; border-radius: 50%; width: 8rem; height: 8rem; border: 2px solid black;"/>
@@ -60,7 +62,7 @@
         </label>
       </div>
       <div class="flex justify-content-around align-items-center pt-4">
-        <p-button label="Solicitar" class="custom-button"></p-button>
+        <p-button (click)="onRequest()" label="Solicitar" class="custom-button"></p-button>
       </div>
     </div>
   </div>

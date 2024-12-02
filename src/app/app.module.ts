@@ -41,6 +41,16 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import {CalendarModule} from "primeng/calendar";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import { ProfileEditFieldsComponent } from './profiles/components/profile-edit-fields/profile-edit-fields.component';
+import { ProfileEditIconComponent } from './profiles/components/profile-edit-icon/profile-edit-icon.component';
+import { ProfileEditBackgroundComponent } from './profiles/components/profile-edit-background/profile-edit-background.component';
+import {ToastModule} from "primeng/toast";
+import { HostNavbarComponent } from './shared/components/host-navbar/host-navbar.component';
+import { HostDashboardComponent } from './host/pages/host-dashboard/host-dashboard.component';
+import { HostVisitorComponent } from './host/pages/host-visitor/host-visitor.component';
+import { CreateSessionComponent } from './host/pages/create-session/create-session.component';
+import { MySessionsComponent } from './host/pages/my-sessions/my-sessions.component';
+import { AdministratingSessionComponent } from './host/components/administrating-session/administrating-session.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +71,16 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     RegisterComponent,
     ItMainPageComponent,
     NoInternetComponent,
-    LoadingComponent
+    LoadingComponent,
+    ProfileEditFieldsComponent,
+    ProfileEditIconComponent,
+    ProfileEditBackgroundComponent,
+    HostNavbarComponent,
+    HostDashboardComponent,
+    HostVisitorComponent,
+    CreateSessionComponent,
+    MySessionsComponent,
+    AdministratingSessionComponent
   ],
     imports: [
         BrowserModule,
@@ -82,7 +101,8 @@ import {InputTextareaModule} from "primeng/inputtextarea";
         RadioButtonModule,
         AngularFireModule.initializeApp(environment.firebase),
         CalendarModule,
-        InputTextareaModule
+        InputTextareaModule,
+        ToastModule
     ],
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),

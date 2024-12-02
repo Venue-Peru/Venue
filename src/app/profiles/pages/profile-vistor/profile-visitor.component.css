@@ -1,3 +1,33 @@
 .back {
   background-color: black;
 }
+
+.profile-hover-container {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-hover-container img {
+  transition: filter 0.3s;
+}
+
+.profile-hover-container:hover img {
+  filter: brightness(0.7);
+}
+
+.profile-hover-container .hover-label {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.profile-hover-container:hover .hover-label {
+  display: block;
+}

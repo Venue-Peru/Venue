@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenService} from "../../services/token.service";
+import {ProfilesService} from "../../../profiles/services/profiles.service";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
-  constructor(private router: Router, private tokenService: TokenService) {
+export class NavbarComponent implements OnInit {
+  icon: string = 'null';
+
+  constructor(
+    private router: Router,
+    private tokenService: TokenService,
+    private profilesService: ProfilesService
+  ) {
   }
   onToProfile() {
     let token = localStorage.getItem('token');
@@ -21,5 +28,29 @@ export class NavbarComponent {
   }
   onToMainPage() {
     this.router.navigate(['/tickets-and-sessions']);
+  }
+
+  onToWristbands() {
+    this.router.navigate(['/tickets-and-sessions/my-wristbands']);
+  }
+
+  ngOnInit(): void {
+    // get uuid safely
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    let uuid = this.tokenService.getUUIDFromToken(token);
+    if (!uuid) {
+      return;
+    }
+    this.profilesService.getByUUIDWithString(uuid).subscribe(
+      profile => {
+        this.icon = profile.icon;
+      },
+      error => {
+        this.icon = '';
+      }
+    );
   }
 }
