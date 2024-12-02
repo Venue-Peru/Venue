@@ -1,0 +1,21 @@
+<!-- src/app/profiles/components/profile-edit-background/profile-edit-background.component.html -->
+<p-dialog header="Edit Profile Background"
+          [(visible)]="editDialogVisible"
+          [modal]="true"
+          [closable]="true"
+          (onHide)="onDialogCancel()">
+  <div class="flex flex-column align-items-center">
+    <h3>Current Background</h3>
+    <img [src]="profile.background == '' ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : profile.background" alt="Current Background" style="border-radius: 1rem; width: 100%; height: auto; object-fit: cover; max-height: 20rem;">
+
+    <h3>New Background</h3>
+    <img *ngIf="newBackground" [src]="newBackgroundPreview" alt="New Background" style="border-radius: 1rem; width: 100%; height: auto; object-fit: cover; max-height: 20rem; margin-bottom: 0.5rem;">
+    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+    <p-button label="Add Image" icon="pi pi-plus" (onClick)="fileInput.click()"></p-button>
+  </div>
+
+  <p-footer>
+    <p-button class="mr-2" label="Cancel" icon="pi pi-times" (onClick)="onDialogCancel()"></p-button>
+    <p-button label="Continue" icon="pi pi-check" (onClick)="onContinue()"></p-button>
+  </p-footer>
+</p-dialog>

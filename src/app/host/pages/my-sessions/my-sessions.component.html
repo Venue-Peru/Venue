@@ -1,0 +1,18 @@
+<div class="grid">
+  <div class="col-12">
+    <h2 class="p-3">Mis Sesiones</h2>
+    <div *ngIf="sessions.length === 0">
+      <p>No tienes sesiones.</p>
+    </div>
+    <div *ngFor="let session of sessions" class="session-row" [ngStyle]="{'background-image': session.sessionImage ? 'url(' + session.sessionImage + ')' : 'none', 'background-color': session.sessionImage ? 'transparent' : 'black'}">
+      <div class="session-info">
+        <h3>{{ session.name }}</h3>
+        <p>{{ session.date | date:'yyyy-MM-dd HH:mm' }}</p>
+      </div>
+      <div class="session-actions">
+        <button pButton type="button" label="Administrar" (click)="administrateSession(session)"></button>
+        <button pButton type="button" label="Ver" (click)="viewSession(session)"></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<p-dialog
+  [(visible)]="editDialogVisible"
+  [modal]="true"
+  [style]="{width: '450px'}"
+  [draggable]="false"
+  [resizable]="false"
+  header="Edit profile"
+  [closeOnEscape]="true"
+  [closable]="true"
+  (onHide)="editDialogCancel()"
+>
+  <form (ngSubmit)="editDialogSubmit()" #profileForm="ngForm">
+    <div class="grid p-fluid">
+      <div class="field col-12 mb-3">
+        <label for="name" class="block mb-2">Name</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="profileCopy.name"
+          name="name"
+          class="w-full"
+          required
+        >
+      </div>
+
+      <div class="field col-12 mb-3">
+        <label for="username" class="block mb-2">Username</label>
+        <input
+          id="username"
+          type="text"
+          pInputText
+          [(ngModel)]="profileCopy.username"
+          name="username"
+          class="w-full"
+          required
+        >
+      </div>
+
+      <div class="field col-12 mb-3">
+        <label for="bio" class="block mb-2">Bio</label>
+        <textarea
+          id="bio"
+          pInputTextarea
+          [(ngModel)]="profileCopy.bio"
+          name="bio"
+          [autoResize]="true"
+          rows="3"
+          class="w-full"
+        ></textarea>
+      </div>
+
+      <div class="field col-12 mb-3">
+        <label for="birthdate" class="block mb-2">Birth date</label>
+        <p-calendar
+          id="birthdate"
+          [(ngModel)]="profileCopy.birthdate"
+          name="birthdate"
+          [showIcon]="true"
+          dateFormat="yy-mm-dd"
+          [readonlyInput]="true"
+          class="w-full"
+        ></p-calendar>
+      </div>
+    </div>
+  </form>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-content-end">
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
+        (onClick)="editDialogCancel()"
+        styleClass="p-button-text"
+      ></p-button>
+      <p-button
+        label="Guardar"
+        icon="pi pi-check"
+        (onClick)="editDialogSubmit()"
+        [disabled]="!profileForm.form.valid"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-dialog>

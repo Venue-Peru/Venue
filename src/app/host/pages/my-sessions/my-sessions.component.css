@@ -1,0 +1,23 @@
+.grid {
+  margin: 0;
+}
+
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.session-info {
+  flex: 1;
+}
+
+.session-actions {
+  display: flex;
+  gap: 10px;
+}

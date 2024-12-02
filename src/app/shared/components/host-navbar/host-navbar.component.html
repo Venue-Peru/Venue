@@ -1,0 +1,24 @@
+<div class="h-4rem flex justify-content-between align-items-center p-3"
+     style="background-color: #171717">
+  <div>
+    <h1 class="clickable text-white" (click)="onToMainPage()">Venue.</h1>
+  </div>
+  <div class="flex gap-8">
+    <p-button label="Descubrir" severity="secondary"></p-button>
+    <div class="flex align-items-center justify-content-center">
+      <span class="p-input-icon-left" style="position: relative;">
+        <i class="pi pi-search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);"></i>
+        <input pInputText placeholder="Buscar" style="padding-left: 2.5rem;" />
+      </span>
+    </div>
+  </div>
+  <div class="flex gap-3">
+    <!-- clickable icon of a briefcase -->
+    <div class="clickable flex align-items-center justify-content-center" (click)="onToDashboard()" style="background-color: white; border-radius: 50%; width: 2.5rem; height: 2.5rem; overflow: hidden;">
+      <img src="https://img.icons8.com/ios/452/briefcase--v1.png" alt="briefcase" style="width: 80%; height: 80%; margin-bottom: 0.25rem">
+    </div>
+    <div class="clickable" (click)="onToProfile()" style="background-color: white; border-radius: 50%; width: 2.5rem; height: 2.5rem; overflow: hidden">
+      <img [src]="icon == '' ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : icon" alt="profile" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+  </div>
+</div>
