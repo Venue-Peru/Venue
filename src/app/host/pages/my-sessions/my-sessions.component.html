@@ -10,9 +10,14 @@
         <p>{{ session.date | date:'yyyy-MM-dd HH:mm' }}</p>
       </div>
       <div class="session-actions">
-        <button pButton type="button" label="Administrar" (click)="administrateSession(session)"></button>
-        <button pButton type="button" label="Ver" (click)="viewSession(session)"></button>
+        <button pButton type="button" label="Administrar" (click)="onAdministrateSession(session)"></button>
+        <button pButton type="button" label="Ver" (click)="onViewSession(session)"></button>
       </div>
     </div>
   </div>
 </div>
+
+<app-administrating-session [editDialogVisible]="editDialogVisible_administration"
+                            [sessionUuid]="selectedSessionUuid"
+                            (onSave)="onSave_administration()"
+                            (onCancel)="onCancel_administration()"></app-administrating-session>

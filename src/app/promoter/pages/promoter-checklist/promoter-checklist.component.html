@@ -9,17 +9,16 @@
   </div>
 </div>
 
-<p-dialog header="INGRESE SUS DATOS" [modal]="true" [(visible)]="visible" style="width: 40rem;">
+<p-dialog header="INGRESE SU CÓDIGO" [modal]="true" [(visible)]="visible" style="width: 40rem;">
   <div class="flex justify-content-center align-items-center">
-    <span style="margin-right: 0.5rem;">Codigo:</span>
-    <input pInputText placeholder="Ingrese código" style="color: white; background-color: black; border: none; outline: none;" />
-  </div>
-  <div class="flex justify-content-center align-items-center">
-    <span style="margin-right: 0.5rem;">DNI:</span>
-    <input pInputText placeholder="Ingrese DNI" style="color: white; background-color: black;" />
+    <span style="margin-right: 0.5rem;">Código:</span>
+    <input pInputText
+           [(ngModel)]="typableCode"
+           placeholder="Ingrese código"
+           style="color: white; background-color: black; border: none; outline: none;" />
   </div>
   <div class="flex justify-content-end align-items-center pt-2">
-    <p-button label="Ingresar" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="visible = false"></p-button>
+    <p-button label="Ingresar" icon="pi pi-check" class="p-button-rounded p-button-success" (click)="onAuthenticating()"></p-button>
   </div>
 </p-dialog>
 
@@ -45,9 +44,12 @@
   <p>Bienvenido Promotor</p>
 </div>
 
+<div *ngIf="paginatedRequesters.length === 0 && !visible" class="flex justify-content-center align-items-center">
+  <p>No hay resultados</p>
+</div>
 <div *ngFor="let requester of paginatedRequesters" class="flex align-items-center justify-content-between px-2">
   <div class="flex align-items-center justify-content-between">
-    <p-checkbox [(ngModel)]="requester.checked" [binary]="true" inputId="binary"></p-checkbox>
+    <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
     <p class="pl-1">{{ requester.name }}</p>
   </div>
   <div class="flex align-items-center justify-content-center">

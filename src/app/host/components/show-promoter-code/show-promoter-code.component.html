@@ -1,0 +1,17 @@
+<p-dialog
+  [(visible)]="dialogVisible"
+  header="Administrar Sesión"
+  [style]="{ width: '50%' }"
+  [modal]="true"
+  [resizable]="false"
+  [baseZIndex]="10000"
+  (onHide)="onClickingClose()"
+  >
+  <div class="center-content">
+    <h3>Promoter Code Details</h3>
+    <p><strong>UUID:</strong> {{ promoterCode.code }}</p>
+    <p><strong>4-digit Code:</strong> {{ promoterCode.typableCode }}</p>
+    <p><strong>URL:</strong> <a [href]="promoterUrl" target="_blank">{{ promoterUrl }}</a></p>
+    <button pButton type="button" label="Copy URL" (click)="copyToClipboard()"></button>
+  </div>
+</p-dialog>

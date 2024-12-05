@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {PromoterCodesService} from "../../../requests/services/promoter-codes.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthenticatePromoterRequest} from "../../model/authenticate-promoter-request";
+import {ProfileListItem} from "../../model/profile-list-item";
 
 @Component({
   selector: 'app-promoter-checklist',
@@ -6,30 +10,37 @@ import { Component } from '@angular/core';
   styleUrl: './promoter-checklist.component.css'
 })
 export class PromoterChecklistComponent {
+  typableCode: string = '';
   visible: boolean = true;
-  paginatedRequesters: any[] = [
-    {
-      userId: 1,
-      name: 'Joaquin Montoya Marín',
-      image: 'https://randomuser.me/api/portraits',
-      checked: false
-    },
-    {
-      userId: 2,
-      name: 'Luis Eduardo Herrera Gonzalez',
-      image: 'https://randomuser.me/api/portraits',
-      checked: false
-    },
-    {
-      userId: 2,
-      name: 'Jonatan Martin Quiroz',
-      image: 'https://randomuser.me/api/portraits',
-      checked: false
-    }
-  ];
-  constructor() { }
+  paginatedRequesters: ProfileListItem[] = [];
+  constructor(
+    private promoterCodesService: PromoterCodesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   showDialog() {
     this.visible = true;
+  }
+
+  onAuthenticating() {
+    // get the first code from route params
+    this.route.params.subscribe(params => {
+      let code = params['code'];
+      let authenticatePromoterRequest = new AuthenticatePromoterRequest(
+        code,
+        // convert the typable code to number
+        Number(this.typableCode)
+      );
+      this.promoterCodesService.authenticatePromoterCode(authenticatePromoterRequest).subscribe(
+        (profiles) => {
+          this.paginatedRequesters = profiles;
+          this.visible = false;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+    });
   }
 }

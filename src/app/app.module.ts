@@ -51,6 +51,7 @@ import { HostVisitorComponent } from './host/pages/host-visitor/host-visitor.com
 import { CreateSessionComponent } from './host/pages/create-session/create-session.component';
 import { MySessionsComponent } from './host/pages/my-sessions/my-sessions.component';
 import { AdministratingSessionComponent } from './host/components/administrating-session/administrating-session.component';
+import { ShowPromoterCodeComponent } from './host/components/show-promoter-code/show-promoter-code.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AdministratingSessionComponent } from './host/components/administrating
     HostVisitorComponent,
     CreateSessionComponent,
     MySessionsComponent,
-    AdministratingSessionComponent
+    AdministratingSessionComponent,
+    ShowPromoterCodeComponent
   ],
     imports: [
         BrowserModule,

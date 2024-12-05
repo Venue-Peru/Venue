@@ -10,8 +10,10 @@ import {TokenService} from "../../../shared/services/token.service";
   styleUrl: './my-sessions.component.css'
 })
 export class MySessionsComponent implements OnInit {
-  focusedSession: Session | null = null;
   sessions: Session[] = [];
+  editDialogVisible_administration: boolean = false;
+  selectedSessionUuid: string = '';
+
   constructor(
     private sessionService: SessionsService,
     private tokenService: TokenService,
@@ -27,13 +29,24 @@ export class MySessionsComponent implements OnInit {
     });
   }
 
-  administrateSession(session: Session) {
-    this.router.navigate([`/tickets-and-sessions/administrate-session/${session.uuid}`]);
+  onAdministrateSession(session: Session) {
+    this.selectedSessionUuid = session.uuid;
+    this.editDialogVisible_administration = true;
   }
 
-  viewSession(session: Session) {
+  onViewSession(session: Session) {
     this.router.navigate([`/tickets-and-sessions/events/${session.uuid}`]);
   }
 
+  onClickingAdministate() {
+    this.editDialogVisible_administration = true;
+  }
+
+  onSave_administration() {
+  }
+
+  onCancel_administration() {
+    this.editDialogVisible_administration = false;
+  }
 
 }

@@ -9,6 +9,6 @@ export const environment = {
     measurementId: "G-6S9RVLQM53",
   },
   production: false,
-  serverBasePath: 'https://venue-final.azurewebsites.net/api/v1/',
-  // serverBasePath: 'http://localhost:8080/api/v1/',
+  // serverBasePath: 'https://venue-final.azurewebsites.net/api/v1/',
+  serverBasePath: 'http://localhost:8080/api/v1/',
 };

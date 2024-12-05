@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'host/:hostId', component: HostVisitorComponent },
       { path: 'view/:eventId', component: ProfileVisitorComponent },
       { path: 'qr-code/:wristbandId', component: SessionTicketComponent },
-      { path: 'promoter-checklist', component: PromoterChecklistComponent },
+      { path: 'promoter-checklist/:code', component: PromoterChecklistComponent },
       { path: 'ask-promoter', component: PromoterChecklistComponent },
       // user-only routes
       { path: 'my-wristbands', component: MyWristbandsComponent },
