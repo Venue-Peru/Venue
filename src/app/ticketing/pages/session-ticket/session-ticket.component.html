@@ -1,3 +1,36 @@
+<div class="ticket-container">
+  <div class="ticket-header">
+    <div class="qr-code">
+      <h3>QR Code</h3>
+      <img *ngIf="bracelet.qrCodeBase64" [src]="'data:image/png;base64,' + bracelet.qrCodeBase64" alt="QR Code" />
+    </div>
+    <div class="session-image">
+      <h1>{{ bracelet.name }}</h1>
+      <img [src]="bracelet.sessionImage" alt="{{ bracelet.name }}" />
+    </div>
+  </div>
+  <div class="ticket-body">
+    <div class="ticket-details">
+      <p><strong>Localización:</strong> {{ bracelet.location }}</p>
+      <p><strong>Día:</strong> {{ bracelet.startDate }}</p>
+      <p><strong>Descripción:</strong> {{ bracelet.description }}</p>
+      <p><strong>DJ:</strong> {{ bracelet.dj }}</p>
+      <p><strong>Dress Code:</strong> {{ bracelet.dressCode }}</p>
+      <p><strong>Edad Mínima:</strong> {{ bracelet.ageMinimum }}</p>
+      <p><strong>Tipo de Música:</strong> {{ bracelet.musicType }}</p>
+    </div>
+    <div class="user-details">
+      <p><strong>Usuario:</strong> {{ fragileProfile.name }}</p>
+      <p><strong>DNI:</strong> {{ fragileProfile.identityCard }}</p>
+      <p><strong>Promotor:</strong> TBA</p>
+      <p><strong>Tipo de Brazalete:</strong> BOX VIP</p>
+      <p><strong>Tiempo de Entrada:</strong> 21:00 - 01:00</p>
+    </div>
+  </div>
+</div>
+
+<!--
+
 <div class="grid">
   <div class="col-4">
     <p>QR-Code</p>
@@ -16,7 +49,6 @@
   </div>
 </div>
 <div class="grid" style="height: 100vh;">
-  <!-- Left content area -->
   <div class="col-10">
     <div class="flex justify-content-between py-1 px-2">
       <p>Joaquín Montoya Marín</p>
@@ -35,15 +67,14 @@
     </div>
   </div>
 
-  <!-- Bracelet area with layered blocks -->
   <div class="col-2 flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-    <!-- Segment blocks for bracelet effect -->
     <div style="height: 10%; width: 30%; background-color: blue; margin-bottom: 0.5rem;"></div>
     <div style="height: 75%; width: 30%; background-color: brown; position: relative;">
-      <!-- Optional layering within main bracelet body -->
       <div style="position: absolute; top: 10%; height: 5%; width: 100%; background-color: blue;"></div>
       <div style="position: absolute; bottom: 10%; height: 5%; width: 100%; background-color: blue;"></div>
     </div>
     <div style="height: 10%; width: 30%; background-color: blue; margin-top: 0.5rem;"></div>
   </div>
 </div>
+
+-->

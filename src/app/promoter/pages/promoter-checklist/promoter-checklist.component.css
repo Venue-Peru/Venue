@@ -34,3 +34,40 @@ input::placeholder {
   color: black;
   background-color: white;
 }
+
+.grid {
+  margin: 0;
+  padding: 0;
+}
+
+.requester-item {
+  cursor: pointer;
+}
+
+.requester-name.selected {
+  background-color: gray;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.parent-container {
+  position: relative;
+  height: 100%; /* Ensure the parent container takes the full height */
+}
+
+.bottom-div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  z-index: 1000;
+}
+
+.vertical-line {
+  width: 1px;
+  background-color: black;
+  height: auto;
+  align-self: stretch;
+}

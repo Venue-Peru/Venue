@@ -1,5 +1,4 @@
-
-<div class="absolute bottom-0 flex justify-content-between align-items-center p-2" style="background-color: black; width: 100%">
+<div class="fixed bottom-0 left-0 right-0 flex justify-content-between align-items-center p-2" style="background-color: black; z-index: 1000;">
   <div class="flex justify-content-center align-items-center">
     <p-paginator [rows]="10" [rowsPerPageOptions]="[5, 10, 20]"></p-paginator>
   </div>
@@ -36,25 +35,36 @@
     </div>
   </div>
   <div class="flex align-items-center justify-content-end">
-    <p>XXX resultados</p>
+    <p *ngIf="!visible">{{ paginatedRequesters?.length }} resultados</p>
   </div>
 </div>
 <hr style="border: none; border-top: 1px solid black; padding-top: 0.5rem;" />
-<div class="flex align-items-center justify-content-end px-2 pb-3">
-  <p>Bienvenido Promotor</p>
+<div class="flex align-items-center justify-content-end px-2 pb-2">
+  <p *ngIf="!visible">Bienvenido Promotor</p>
+</div>
+<hr style="border: none; border-bottom: 1px solid black;" />
+
+<div class="grid">
+  <div class="col-6" [style]="!visible ? 'min-height: 100vh; border-right: 1px solid black;' : ''">
+    <div *ngIf="paginatedRequesters?.length === 0 && !visible" class="flex justify-content-center align-items-center">
+      <p>No hay resultados</p>
+    </div>
+    <div *ngFor="let requester of paginatedRequesters" class="flex align-items-center justify-content-between px-2">
+      <div class="flex align-items-center requester-content">
+        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+        <div class="flex-grow-1 pl-1 requester-name requester-item" (click)="onRequesterClick(requester)" [ngClass]="{'selected': selectedRequester === requester}">
+          {{ requester.name }}
+        </div>
+      </div>
+      <div class="flex align-items-center justify-content-center">
+        <button pButton type="button" icon="pi pi-eye" class="p-button-rounded p-button-text" (click)="onShowProfile(requester)"></button>
+        <button pButton type="button" icon="pi pi-check" class="p-button-rounded p-button-text" (click)="onAcceptRequest(requester)"></button>
+        <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-text" (click)="onRejectRequest(requester)"></button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedRequester != null" class="col-6 h-screen" style="padding: 0; margin: 0; border-width: 1rem">
+    <app-profile-vistor [profileUuid]="selectedRequester.profileUuid" [loadProfile]="loadProfile"></app-profile-vistor>
+  </div>
 </div>
 
-<div *ngIf="paginatedRequesters.length === 0 && !visible" class="flex justify-content-center align-items-center">
-  <p>No hay resultados</p>
-</div>
-<div *ngFor="let requester of paginatedRequesters" class="flex align-items-center justify-content-between px-2">
-  <div class="flex align-items-center justify-content-between">
-    <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
-    <p class="pl-1">{{ requester.name }}</p>
-  </div>
-  <div class="flex align-items-center justify-content-center">
-    <button pButton type="button" icon="pi pi-eye" class="p-button-rounded p-button-text" (click)="showDialog()"></button>
-    <button pButton type="button" icon="pi pi-check" class="p-button-rounded p-button-text"></button>
-    <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-text"></button>
-  </div>
-</div>

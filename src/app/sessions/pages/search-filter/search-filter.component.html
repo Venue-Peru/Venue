@@ -1,0 +1,65 @@
+<div class="search-page">
+  <!-- Sidebar for Filters -->
+  <aside class="sidebar">
+    <h4>Filters</h4>
+
+    <!-- Categories -->
+    <p-multiSelect
+      [options]="categories"
+      [(ngModel)]="selectedCategories"
+      placeholder="Categories"
+    ></p-multiSelect>
+
+    <!-- Price Range -->
+    <div class="filter">
+      <h5>Price Range</h5>
+      <p-slider [(ngModel)]="priceRange" range="true"></p-slider>
+      <p>{{ priceRange[0] }} - {{ priceRange[1] }} USD</p>
+    </div>
+
+    <!-- Ratings -->
+    <div class="filter">
+      <h5>Customer Ratings</h5>
+      <div *ngFor="let rating of [5, 4, 3, 2, 1]">
+        <p-checkbox
+          [(ngModel)]="selectedRatings"
+          [value]="rating"
+          label="{{ rating }} stars & up"
+        ></p-checkbox>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="content">
+    <!-- Results Grid -->
+    <div class="results">
+      <p-card
+        *ngFor="let session of sessions"
+        styleClass="session-card"
+        [style]="{ width: '300px', margin: '16px' }"
+      >
+        <img
+          [src]="session.sessionImage"
+          alt="{{ session.name }}"
+          class="session-image"
+        />
+        <div class="p-card-content">
+          <h3>{{ session.name }}</h3>
+          <p><strong>Host:</strong> {{ session.hostName }}</p>
+          <p><strong>Location:</strong> {{ session.location }}</p>
+          <p><strong>Date:</strong> {{ session.date }}</p>
+        </div>
+        <div class="p-card-footer">
+          <button
+            pButton
+            (click)="onVisitingSession(session)"
+            label="Ver Detalles"
+            icon="pi pi-shopping-cart"
+            class="p-button-text"
+          ></button>
+        </div>
+      </p-card>
+    </div>
+  </div>
+</div>

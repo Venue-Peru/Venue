@@ -1,0 +1,13 @@
+<!-- src/app/shared/components/search-bar/search-bar.component.html -->
+<div class="flex align-items-center justify-content-center">
+  <span class="p-input-icon-left" style="position: relative;">
+    <i class="pi pi-search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%);"></i>
+    <input
+      pInputText
+      placeholder="Buscar"
+      [(ngModel)]="search"
+      style="padding-left: 2.5rem;"
+      (keydown)="onKeydown($event)" />
+  </span>
+  <button pButton type="button" icon="pi pi-search" class="p-button-sm p-button-secondary" (click)="onSearch()"></button>
+</div>

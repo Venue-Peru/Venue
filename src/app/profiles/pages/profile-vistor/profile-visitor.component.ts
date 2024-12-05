@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Profile} from "../../model/profile";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProfilesService} from "../../services/profiles.service";
@@ -15,6 +15,8 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
   styleUrl: './profile-visitor.component.css'
 })
 export class ProfileVisitorComponent implements OnInit {
+  @Input() profileUuid: string = '';
+  @Input() loadProfile: boolean = false;
   profile: Profile = {} as Profile;
   editDialogVisible_fields: boolean = false;
   editDialogVisible_icon: boolean = false;
@@ -34,9 +36,9 @@ export class ProfileVisitorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      if (params['eventId']) {
-        this.profilesService.getByUUID(params['eventId']).subscribe(
+    if (this.loadProfile) {
+      if (this.profileUuid) {
+        this.profilesService.getByUUIDWithString(this.profileUuid).subscribe(
           profile => {
             this.start = true;
             this.profile = profile;
@@ -45,10 +47,25 @@ export class ProfileVisitorComponent implements OnInit {
             this.start = null;
           }
         )
-      } else {
-        this.start = null;
       }
-    })
+    }
+    else {
+      this.route.params.subscribe(params => {
+        if (params['eventId']) {
+          this.profilesService.getByUUID(params['eventId']).subscribe(
+            profile => {
+              this.start = true;
+              this.profile = profile;
+            },
+            error => {
+              this.start = null;
+            }
+          )
+        } else {
+          this.start = null;
+        }
+      })
+    }
     this.checkIfThisUser();
   }
 

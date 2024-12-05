@@ -1,27 +1,16 @@
-<div style="height: 2.5rem; width: 100%; background-color: white">
-  <div class="flex justify-content-between py-1 px-2">
-    <div class="flex align-items-center">
-      <p>Filtrar</p>
-      <i class="pi pi-sort pl-1 mt-1"></i>
-    </div>
-    <div>
-      <p>XXXX resultados</p>
-    </div>
-  </div>
-</div>
-
-<div class="grid" style="background-color: black">
-  <div *ngFor="let host of hosts" class="h-12rem sm:col-4 col-6 flex justify-content-center align-items-center">
-    <div class="absolute z-3 h-5rem" style="background-color: white; width: 20%">
+<div class="grid pt-2" style="background-color: black; min-height: 100vh">
+  <div *ngFor="let bracelet of miniBracelets"
+       class="h-12rem sm:col-4 col-6 flex justify-content-center align-items-center"
+        style="cursor:pointer" (click)="onClickingBracelet(bracelet)">
+    <div class="absolute z-3 h-5rem flex flex-column justify-content-center align-items-center" style="background-color: white; width: 17%">
       <div class="flex justify-content-center align-items-center">
         <i class="pi pi-qrcode"></i>
         <div>
-          <p>{{host.name}}</p>
-          <p>Circo Loco</p>
+          <p>{{bracelet.name}}</p>
         </div>
       </div>
       <div class="flex justify-content-center align-items-center">
-        <p>17.12.24</p>
+        <p>{{ formatDate(bracelet.startDate) }}</p>
       </div>
     </div>
     <div class="h-10rem" style="margin-left: 5%; background-color: brown; width: 40%; border-radius: 1rem; z-index: 2">

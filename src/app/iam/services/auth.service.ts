@@ -83,6 +83,7 @@ export class AuthService {
    */
   signOut() {
     localStorage.removeItem('token');
+    sessionStorage.removeItem('icon');
     this.signedIn.next(false);
     this.signedInUserId.next(0);
     this.signedInUsername.next('');

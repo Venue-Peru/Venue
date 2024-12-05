@@ -9,7 +9,7 @@
       </div>
     </div>
     <img (click)="onClickingIcon()" [src]="profile.icon == '' ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : profile.icon" [alt]="profile.username" [style]="'cursor: pointer'"
-         style="height: 12rem; width: 12rem; border-radius: 50%; z-index: 5">
+         style="height: 12rem; width: 12rem; border-radius: 50%; z-index: 5; object-fit: cover;">
     <div *ngIf="isThisUser" class="hover-label" style="z-index: 5; pointer-events: none">Cambiar</div>
   </div>
   <div class="h-12rem flex profile-hover-container">

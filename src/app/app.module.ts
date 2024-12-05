@@ -52,6 +52,11 @@ import { CreateSessionComponent } from './host/pages/create-session/create-sessi
 import { MySessionsComponent } from './host/pages/my-sessions/my-sessions.component';
 import { AdministratingSessionComponent } from './host/components/administrating-session/administrating-session.component';
 import { ShowPromoterCodeComponent } from './host/components/show-promoter-code/show-promoter-code.component';
+import { SearchFilterComponent } from './sessions/pages/search-filter/search-filter.component';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
+import {MultiSelectModule} from "primeng/multiselect";
+import {SliderModule} from "primeng/slider";
+import {MenuModule} from "primeng/menu";
 
 @NgModule({
   declarations: [
@@ -82,7 +87,9 @@ import { ShowPromoterCodeComponent } from './host/components/show-promoter-code/
     CreateSessionComponent,
     MySessionsComponent,
     AdministratingSessionComponent,
-    ShowPromoterCodeComponent
+    ShowPromoterCodeComponent,
+    SearchFilterComponent,
+    SearchBarComponent,
   ],
     imports: [
         BrowserModule,
@@ -104,7 +111,10 @@ import { ShowPromoterCodeComponent } from './host/components/show-promoter-code/
         AngularFireModule.initializeApp(environment.firebase),
         CalendarModule,
         InputTextareaModule,
-        ToastModule
+        ToastModule,
+        MultiSelectModule,
+        SliderModule,
+        MenuModule,
     ],
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),

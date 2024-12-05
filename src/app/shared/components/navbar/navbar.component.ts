@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenService} from "../../services/token.service";
 import {ProfilesService} from "../../../profiles/services/profiles.service";
+import {MenuItem} from "primeng/api";
+import {AuthService} from "../../../iam/services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +12,24 @@ import {ProfilesService} from "../../../profiles/services/profiles.service";
 })
 export class NavbarComponent implements OnInit {
   icon: string = 'null';
+  menuItems: MenuItem[];
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private profilesService: ProfilesService
+    private profilesService: ProfilesService,
+    private authService: AuthService
   ) {
+    this.menuItems = [
+      { label: 'Ver Perfil', icon: 'pi pi-user', command: () => this.onToProfile() },
+      { label: 'Log-out', icon: 'pi pi-sign-out', command: () => this.onLogout() }
+    ];
   }
+
+  onLogout() {
+    this.authService.signOut();
+  }
+
   onToProfile() {
     let token = localStorage.getItem('token');
     if (token != null) {
@@ -35,6 +48,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let icon = sessionStorage.getItem('icon');
+    if (icon) {
+      this.icon = icon;
+    }
     // get uuid safely
     let token = localStorage.getItem('token');
     if (!token) {
@@ -47,6 +64,7 @@ export class NavbarComponent implements OnInit {
     this.profilesService.getByUUIDWithString(uuid).subscribe(
       profile => {
         this.icon = profile.icon;
+        sessionStorage.setItem('icon', this.icon);
       },
       error => {
         this.icon = '';

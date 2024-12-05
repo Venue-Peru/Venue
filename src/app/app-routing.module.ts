@@ -15,6 +15,7 @@ import {HostVisitorComponent} from "./host/pages/host-visitor/host-visitor.compo
 import {HostDashboardComponent} from "./host/pages/host-dashboard/host-dashboard.component";
 import {CreateSessionComponent} from "./host/pages/create-session/create-session.component";
 import {MySessionsComponent} from "./host/pages/my-sessions/my-sessions.component";
+import {SearchFilterComponent} from "./sessions/pages/search-filter/search-filter.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -25,11 +26,13 @@ const routes: Routes = [
       { path: 'events/:eventId', component: SessionVisitorComponent },
       { path: 'host/:hostId', component: HostVisitorComponent },
       { path: 'view/:eventId', component: ProfileVisitorComponent },
-      { path: 'qr-code/:wristbandId', component: SessionTicketComponent },
       { path: 'promoter-checklist/:code', component: PromoterChecklistComponent },
       { path: 'ask-promoter', component: PromoterChecklistComponent },
+      // search and filter
+      { path: 'search', component: SearchFilterComponent },
       // user-only routes
       { path: 'my-wristbands', component: MyWristbandsComponent },
+      { path: 'my-wristbands/:wristbandId', component: SessionTicketComponent },
       // host-only routes
       { path: 'work/dashboard', component: HostDashboardComponent },
       { path: 'work/dashboard/create-session', component: CreateSessionComponent },

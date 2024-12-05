@@ -30,4 +30,8 @@ export class SessionsService extends BaseService<Session> {
   getAllByHostUuid(hostUuid: string) {
     return this.http.get<Session[]>(`${this.basePath}${this.resourceEndpoint}/sessions-by-host/${hostUuid}`).pipe();
   }
+
+  getAllBySearchQuery(query: string) {
+    return this.http.get<Session[]>(`${this.basePath}${this.resourceEndpoint}/sessions-by-search-bar/${query}`).pipe();
+  }
 }

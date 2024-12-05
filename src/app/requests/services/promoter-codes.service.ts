@@ -26,6 +26,6 @@ export class PromoterCodesService extends BaseService<PromoterCode> {
   }
 
   authenticatePromoterCode(authenticatePromoterCodeRequest: AuthenticatePromoterRequest) {
-    return this.http.post<ProfileListItem[]>(`${this.basePath}${this.resourceEndpoint}/authenticate`, authenticatePromoterCodeRequest).pipe();
+    return this.http.post<PromoterCode>(`${this.basePath}${this.resourceEndpoint}/authenticate`, authenticatePromoterCodeRequest).pipe();
   }
 }
