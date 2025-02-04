@@ -1,5 +1,6 @@
 export class Host {
   id: number;
+  uuid: string;
   username: string;
   name: string;
   email: number;
@@ -12,6 +13,7 @@ export class Host {
 
   constructor() {
     this.id = 0;
+    this.uuid = '';
     this.username = '';
     this.name = '';
     this.email = 0;

@@ -1,16 +1,14 @@
-// src/app/profiles/components/profile-edit-icon/profile-edit-icon.component.ts
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Profile } from '../../model/profile';
-import {Host} from "../../../host/model/host";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Host} from "../../model/host";
 
 @Component({
-  selector: 'app-profile-edit-icon',
-  templateUrl: './profile-edit-icon.component.html',
-  styleUrls: ['./profile-edit-icon.component.css']
+  selector: 'app-host-edit-icon',
+  templateUrl: './host-edit-icon.component.html',
+  styleUrl: './host-edit-icon.component.css'
 })
-export class ProfileEditIconComponent {
+export class HostEditIconComponent {
   @Input() editDialogVisible: boolean = false;
-  @Input() profile: Profile = {} as Profile;
+  @Input() host: Host = {} as Host;
   @Output() onSave = new EventEmitter<File>();
   @Output() onCancel = new EventEmitter();
 

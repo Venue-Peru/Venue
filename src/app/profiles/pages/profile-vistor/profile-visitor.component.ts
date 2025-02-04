@@ -8,6 +8,7 @@ import {TokenService} from "../../../shared/services/token.service";
 import {InputTextarea} from "primeng/inputtextarea";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {EditProfileFieldsRequest} from "../../model/edit-profile-fields-request";
 
 @Component({
   selector: 'app-profile-vistor',
@@ -87,8 +88,36 @@ export class ProfileVisitorComponent implements OnInit {
   }
 
   onSave_fields(updatedProfile: Profile) {
-    this.profile = updatedProfile;
+    this.editFields(updatedProfile);
     this.editDialogVisible_fields = false;
+  }
+
+  editFields(updatedProfile: Profile) {
+    // get uuid safely
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    let uuid = this.tokenService.getUUIDFromToken(token);
+    if (!uuid) {
+      return;
+    }
+    // change birthDate to string yyyy-mm-dd
+    let date = updatedProfile.birthDate.toString();
+    // if date is in yyyy-mm-dd format
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+      date = this.formatDateToString(updatedProfile.birthDate);
+    }
+    // get profile fields
+    let editProfileFieldsRequest = new EditProfileFieldsRequest(
+      updatedProfile.bio ? updatedProfile.bio : '',
+      date
+    );
+    this.profilesService.updateFields(uuid, editProfileFieldsRequest).subscribe(
+      profile => {
+        this.profile = profile;
+      }
+    );
   }
 
   onCancel_fields() {
@@ -190,5 +219,18 @@ export class ProfileVisitorComponent implements OnInit {
     )
   }
 
+  getAge(): number {
+    let currentYear = new Date().getFullYear();
+    let birthYear = new Date(this.profile.birthDate).getFullYear();
+    return currentYear - birthYear;
+  }
 
+  // resources
+
+  formatDateToString(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 }

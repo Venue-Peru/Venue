@@ -21,8 +21,11 @@
     <div style="padding-left: 15rem; padding-top: 1rem">
       <div class="flex justify-content-between">
         <div>
-          <h2 class="text-white">{{ profile.username }}</h2>
-          <p class="text-white">{{ 18 }} años</p>
+          <div class="flex  align-items-baseline gap-3">
+            <h2 class="text-white">{{ profile.username }}</h2>
+            <p class="text-white">{{ getAge() }} años</p>
+          </div>
+          <p class="text-white mt-1">{{ profile.bio }}</p>
         </div>
         <div class="flex gap-4 pr-4">
           <div class="text-center">

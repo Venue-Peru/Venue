@@ -57,6 +57,10 @@ import { SearchBarComponent } from './shared/components/search-bar/search-bar.co
 import {MultiSelectModule} from "primeng/multiselect";
 import {SliderModule} from "primeng/slider";
 import {MenuModule} from "primeng/menu";
+import { ForgotPasswordComponent } from './iam/pages/forgot-password/forgot-password.component';
+import { HostEditIconComponent } from './host/components/host-edit-icon/host-edit-icon.component';
+import { HostEditBackgroundComponent } from './host/components/host-edit-background/host-edit-background.component';
+import { HostEditFieldsComponent } from './host/components/host-edit-fields/host-edit-fields.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +94,10 @@ import {MenuModule} from "primeng/menu";
     ShowPromoterCodeComponent,
     SearchFilterComponent,
     SearchBarComponent,
+    ForgotPasswordComponent,
+    HostEditIconComponent,
+    HostEditBackgroundComponent,
+    HostEditFieldsComponent,
   ],
     imports: [
         BrowserModule,
@@ -114,7 +122,7 @@ import {MenuModule} from "primeng/menu";
         ToastModule,
         MultiSelectModule,
         SliderModule,
-        MenuModule,
+        MenuModule
     ],
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),

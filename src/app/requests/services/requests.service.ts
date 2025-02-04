@@ -30,4 +30,8 @@ export class RequestsService extends BaseService<ProfileFromSessionRequest> {
   rejectRequest(requestInteraction: SessionRequestInteraction) {
     return this.http.post<ProfileListItem[]>(`${this.basePath}${this.resourceEndpoint}/reject`, requestInteraction).pipe();
   }
+
+  getAlreadyRequestedByUser(sessionUuid: string) {
+    return this.http.get<any>(`${this.basePath}${this.resourceEndpoint}/get-already-requested/${sessionUuid}`).pipe();
+  }
 }

@@ -3,6 +3,7 @@ import {BaseService} from "../../shared/services/base.service";
 import {Profile} from "../model/profile";
 import {HttpClient} from "@angular/common/http";
 import {FragileProfile} from "../model/fragile-profile";
+import {EditProfileFieldsRequest} from "../model/edit-profile-fields-request";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class ProfilesService extends BaseService<Profile> {
 
   updateIcon(uuid: String, icon: String) {
     return this.http.put<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}/icon`, {icon}).pipe();
+  }
+
+  updateFields(uuid: String, editProfileFieldsRequest: EditProfileFieldsRequest) {
+    return this.http.put<Profile>(`${this.basePath}${this.resourceEndpoint}/${uuid}/fields`, editProfileFieldsRequest).pipe();
   }
 }

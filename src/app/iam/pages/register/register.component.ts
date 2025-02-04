@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {SignUpRequest} from "../../model/sign-up-request";
@@ -8,7 +8,12 @@ import {SignUpRequest} from "../../model/sign-up-request";
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  failure: boolean | null = null;
+  progressLocation = {
+    x: 0,
+    y: 0
+  }
   signUpForm = {
     username: '',
     password: '',
@@ -19,8 +24,12 @@ export class RegisterComponent {
   }
   constructor(private router: Router, private authService: AuthService) {
   }
-  onRegister() {
+  onRegister(event: MouseEvent) {
     console.log('Register');
+    this.failure = false;
+    // get location of cursor
+    this.progressLocation.x = event.clientX;
+    this.progressLocation.y = event.clientY;
     let signUpRequest: SignUpRequest = {
       username: this.signUpForm.username,
       password: this.signUpForm.password,
@@ -33,5 +42,13 @@ export class RegisterComponent {
   }
   onToLogin() {
     this.router.navigate(['/']);
+  }
+
+  ngOnInit(): void {
+    this.authService.signUpError$.subscribe((errorOccurred) => {
+      if (errorOccurred) {
+        this.failure = true;
+      }
+    });
   }
 }

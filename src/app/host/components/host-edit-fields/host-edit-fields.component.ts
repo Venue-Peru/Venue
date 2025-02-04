@@ -1,23 +1,22 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Profile} from "../../model/profile";
-import {ZIndexUtils} from "primeng/utils";
+import {Host} from "../../model/host";
 
 @Component({
-  selector: 'app-profile-edit-fields',
-  templateUrl: './profile-edit-fields.component.html',
-  styleUrl: './profile-edit-fields.component.css'
+  selector: 'app-host-edit-fields',
+  templateUrl: './host-edit-fields.component.html',
+  styleUrl: './host-edit-fields.component.css'
 })
-export class ProfileEditFieldsComponent implements OnChanges, OnInit {
-  @Input() profile: Profile = {} as Profile;
+export class HostEditFieldsComponent implements OnChanges, OnInit {
+  @Input() host: Host = {} as Host;
   @Input() editDialogVisible: boolean = false;
-  @Output() onSave = new EventEmitter<Profile>();
+  @Output() onSave = new EventEmitter<Host>();
   @Output() onCancel = new EventEmitter();
 
-  profileCopy: Profile = {} as Profile;
+  hostCopy: Host = {} as Host;
   hasChanges: boolean = false;
 
   editDialogSubmit() {
-    this.onSave.emit(this.profileCopy);
+    this.onSave.emit(this.hostCopy);
   }
 
   editDialogCancel() {
@@ -27,7 +26,7 @@ export class ProfileEditFieldsComponent implements OnChanges, OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['editDialogVisible'] && this.editDialogVisible) {
       // make a copy of the profile to edit
-      this.profileCopy = { ...this.profile };
+      this.hostCopy = { ...this.host };
       this.hasChanges = false;
     }
   }

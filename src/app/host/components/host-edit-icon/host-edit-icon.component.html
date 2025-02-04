@@ -1,12 +1,11 @@
-<!-- src/app/profiles/components/profile-edit-icon/profile-edit-icon.component.html -->
-<p-dialog header="Editar ícono de perfil"
+<p-dialog header="Editar ícono de host"
           [(visible)]="editDialogVisible"
           [modal]="true"
           [closable]="true"
           (onHide)="onDialogCancel()">
   <div class="flex flex-column align-items-center">
     <h3>Current Icon</h3>
-    <img [src]="profile.icon == '' ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : profile.icon" alt="Current Icon" style="border-radius: 50%; width: 5rem; height: 5rem; object-fit: cover;">
+    <img [src]="host.icon == '' || host.icon == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : host.icon" alt="Current Icon" style="border-radius: 50%; width: 5rem; height: 5rem; object-fit: cover;">
 
     <h3>New Icon</h3>
     <img *ngIf="newIcon" [src]="newIconPreview" alt="New Icon" style="border-radius: 50%; width: 5rem; height: 5rem; object-fit: cover; margin-bottom: 0.5rem;">

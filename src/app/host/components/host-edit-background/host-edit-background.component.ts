@@ -1,16 +1,14 @@
-// src/app/profiles/components/profile-edit-background/profile-edit-background.component.ts
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Profile} from "../../model/profile";
-import {Host} from "../../../host/model/host";
+import {Host} from "../../model/host";
 
 @Component({
-  selector: 'app-profile-edit-background',
-  templateUrl: './profile-edit-background.component.html',
-  styleUrl: './profile-edit-background.component.css'
+  selector: 'app-host-edit-background',
+  templateUrl: './host-edit-background.component.html',
+  styleUrl: './host-edit-background.component.css'
 })
-export class ProfileEditBackgroundComponent {
+export class HostEditBackgroundComponent {
   @Input() editDialogVisible: boolean = false;
-  @Input() profile: Profile = {} as Profile;
+  @Input() host: Host = {} as Host;
   @Output() onSave = new EventEmitter<File>();
   @Output() onCancel = new EventEmitter();
 

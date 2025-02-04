@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HostService } from '../../services/host.service';
 import { Host } from '../../model/host';
+import {TokenService} from "../../../shared/services/token.service";
+import {finalize} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {EditHostFieldsRequest} from "../../model/edit-host-fields-request";
 @Component({
   selector: 'app-host-visitor',
   templateUrl: './host-visitor.component.html',
@@ -16,9 +20,13 @@ export class HostVisitorComponent implements OnInit {
   editDialogVisible_icon: boolean = false;
   editDialogVisible_background: boolean = false;
 
+  // layer 0
+
   constructor(
     private route: ActivatedRoute,
-    private hostService: HostService
+    private hostService: HostService,
+    private tokenService: TokenService,
+    private storage: AngularFireStorage
   ) { }
 
   ngOnInit(): void {
@@ -28,9 +36,8 @@ export class HostVisitorComponent implements OnInit {
           host => {
             this.start = true;
             this.host = host;
-            this.isThisUser = this.checkIfThisUser(host);
           },
-          error => {
+          () => {
             this.start = null;
           }
         );
@@ -38,16 +45,10 @@ export class HostVisitorComponent implements OnInit {
         this.start = null;
       }
     });
+    this.checkIfThisUser();
   }
 
-  checkIfThisUser(host: Host): boolean {
-    // Implement logic to check if the current user is the host
-    return false;
-  }
-
-  openEditDialog(): void {
-    this.editDialogVisible_fields = true;
-  }
+  // layer 1
 
   onClickingIcon(): void {
     this.editDialogVisible_icon = true;
@@ -57,27 +58,141 @@ export class HostVisitorComponent implements OnInit {
     this.editDialogVisible_background = true;
   }
 
-  onSave_fields(event: any): void {
-    // Implement save logic for fields
+  onSave_fields(updatedHost: Host): void {
+    this.editFields(updatedHost);
+    this.editDialogVisible_fields = false;
   }
 
   onCancel_fields(): void {
     this.editDialogVisible_fields = false;
   }
 
-  onSave_icon(event: any): void {
-    // Implement save logic for icon
+  onSave_icon(newIcon: File): void {
+    this.editIcon(newIcon);
+    this.editDialogVisible_icon = false;
   }
 
   onCancel_icon(): void {
     this.editDialogVisible_icon = false;
   }
 
-  onSave_background(event: any): void {
-    // Implement save logic for background
+  onSave_background(newBackground: File): void {
+    this.editBackground(newBackground);
+    this.editDialogVisible_background = false;
   }
 
   onCancel_background(): void {
     this.editDialogVisible_background = false;
   }
+
+  onClickingEditIcon(): void {
+    this.editDialogVisible_fields = true;
+  }
+
+  // layer 2
+
+  checkIfThisUser() {
+    this.route.params.subscribe(params => {
+      let token = localStorage.getItem('token');
+      if (params['hostId'] && token) {
+        if (this.tokenService.getUUIDFromToken(token) == params['hostId']) {
+          this.isThisUser = true;
+        }
+      }
+    })
+  }
+
+  // layer 3
+
+  editFields(updatedHost: Host) {
+    // get uuid safely
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    let uuid = this.tokenService.getUUIDFromToken(token);
+    if (!uuid) {
+      return;
+    }
+    // get profile fields
+    let editHostFieldsRequest = new EditHostFieldsRequest(
+      updatedHost.name,
+      updatedHost.bio ? updatedHost.bio : ''
+    );
+    this.hostService.updateFields(uuid, editHostFieldsRequest).subscribe(
+      host => {
+        this.host = host;
+      }
+    );
+  }
+
+  editBackground(newBackground: File) {
+    // get uuid safely
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    let uuid = this.tokenService.getUUIDFromToken(token);
+    if (!uuid) {
+      return;
+    }
+    // send to firebase
+    const filePath = `hosts/${uuid}/background`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, newBackground);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          console.log('xd');
+          this.updateBackground_backend(uuid ? uuid : '', url);
+        });
+      })
+    ).subscribe();
+  }
+
+  editIcon(newIcon: File) {
+    // get uuid safely
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    let uuid = this.tokenService.getUUIDFromToken(token);
+    if (!uuid) {
+      return;
+    }
+    const filePath = `hosts/${uuid}/icon`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, newIcon);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          console.log('xd');
+          this.updateIcon_backend(uuid ? uuid : '', url);
+        });
+      })
+    ).subscribe();
+  }
+
+  // layer 4
+
+  updateBackground_backend(uuid: String, background: String) {
+    this.hostService.updateBackground(uuid, background).subscribe(
+      host => {
+        console.log('did it');
+        this.host = host;
+      }
+    )
+  }
+
+  updateIcon_backend(uuid: String, icon: String) {
+    this.hostService.updateIcon(uuid, icon).subscribe(
+      host => {
+        console.log('did it');
+        this.host = host;
+      }
+    )
+  }
+
 }

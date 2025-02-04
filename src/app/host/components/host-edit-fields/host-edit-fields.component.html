@@ -9,38 +9,35 @@
   [closable]="true"
   (onHide)="editDialogCancel()"
 >
-  <form (ngSubmit)="editDialogSubmit()" #profileForm="ngForm">
+  <form (ngSubmit)="editDialogSubmit()" #hostForm="ngForm">
     <div class="grid p-fluid">
+
+      <div class="field col-12 mb-3">
+        <label for="name" class="block mb-2">Name</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="hostCopy.name"
+          name="name"
+          placeholder="Enter your name"
+          class="w-full"
+          (ngModelChange)="onFieldChange()"
+        />
+      </div>
 
       <div class="field col-12 mb-3">
         <label for="bio" class="block mb-2">Bio</label>
         <textarea
           id="bio"
           pInputTextarea
-          [(ngModel)]="profileCopy.bio"
+          [(ngModel)]="hostCopy.bio"
           name="bio"
           rows="3"
           placeholder="Write something about you"
           class="w-full"
           (ngModelChange)="onFieldChange()"
         ></textarea>
-      </div>
-
-      <div class="field col-12 mb-3">
-        <label for="birthdate" class="block mb-2">Birth date</label>
-
-        <p-calendar
-          id="birthdate"
-          [(ngModel)]="profileCopy.birthDate"
-          name="birthdate"
-          [showIcon]="true"
-          dateFormat="yy-mm-dd"
-          [readonlyInput]="true"
-          [appendTo]="'body'"
-          [style]="{ width: '100%', 'min-width': '350px' }"
-          class="w-full"
-          (ngModelChange)="onFieldChange()"
-        ></p-calendar>
       </div>
     </div>
   </form>
@@ -57,7 +54,7 @@
         label="Guardar"
         icon="pi pi-check"
         (onClick)="editDialogSubmit()"
-        [disabled]="!profileForm.form.valid || !hasChanges"
+        [disabled]="!hostForm.form.valid || !hasChanges"
       ></p-button>
     </div>
   </ng-template>

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {TokenService} from "../../services/token.service";
-import {ProfilesService} from "../../../profiles/services/profiles.service";
 import {MenuItem} from "primeng/api";
 import {AuthService} from "../../../iam/services/auth.service";
+import {HostService} from "../../../host/services/host.service";
 
 @Component({
   selector: 'app-host-navbar',
@@ -17,7 +17,7 @@ export class HostNavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private profilesService: ProfilesService,
+    private hostsService: HostService,
     private authService: AuthService
   ) {
     this.menuItems = [
@@ -61,7 +61,7 @@ export class HostNavbarComponent implements OnInit {
     if (!uuid) {
       return;
     }
-    this.profilesService.getByUUIDWithString(uuid).subscribe(
+    this.hostsService.getByUUIDWithString(uuid).subscribe(
       profile => {
         this.icon = profile.icon;
         sessionStorage.setItem('icon', this.icon);

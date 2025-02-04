@@ -1,15 +1,14 @@
-<!-- src/app/profiles/components/profile-edit-icon/profile-edit-icon.component.html -->
-<p-dialog header="Editar ícono de perfil"
+<p-dialog header="Edit Profile Background"
           [(visible)]="editDialogVisible"
           [modal]="true"
           [closable]="true"
           (onHide)="onDialogCancel()">
   <div class="flex flex-column align-items-center">
-    <h3>Current Icon</h3>
-    <img [src]="profile.icon == '' ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : profile.icon" alt="Current Icon" style="border-radius: 50%; width: 5rem; height: 5rem; object-fit: cover;">
+    <h3>Current Background</h3>
+    <img [src]="host.background == '' || host.background == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : host.background" alt="Current Background" style="border-radius: 1rem; width: 100%; height: auto; object-fit: cover; max-height: 20rem;">
 
-    <h3>New Icon</h3>
-    <img *ngIf="newIcon" [src]="newIconPreview" alt="New Icon" style="border-radius: 50%; width: 5rem; height: 5rem; object-fit: cover; margin-bottom: 0.5rem;">
+    <h3>New Background</h3>
+    <img *ngIf="newBackground" [src]="newBackgroundPreview" alt="New Background" style="border-radius: 1rem; width: 100%; height: auto; object-fit: cover; max-height: 20rem; margin-bottom: 0.5rem;">
     <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
     <p-button label="Add Image" icon="pi pi-plus" (onClick)="fileInput.click()"></p-button>
   </div>

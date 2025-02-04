@@ -14,6 +14,7 @@ import {MessageService} from "primeng/api";
 })
 export class SessionVisitorComponent implements OnInit {
   start: boolean | null = false;
+  alreadyRequested: boolean = true;
   requestOptions = [
     { name: 'General', key: 'G' },
     { name: 'VIP', key: 'V' },
@@ -41,6 +42,7 @@ export class SessionVisitorComponent implements OnInit {
           session => {
             this.start = true;
             this.session = session;
+            this.getAlreadyRequestedByUser(params['eventId']);
           },
           error => {
             this.start = null;
@@ -50,6 +52,17 @@ export class SessionVisitorComponent implements OnInit {
         this.start = null;
       }
     });
+  }
+
+  getAlreadyRequestedByUser(sessionUuid: string) {
+    this.requestsService.getAlreadyRequestedByUser(sessionUuid).subscribe(
+      response => {
+        this.alreadyRequested = true;
+      },
+      error => {
+        this.alreadyRequested = false;
+      }
+    );
   }
 
   onRequest() {
@@ -70,6 +83,7 @@ export class SessionVisitorComponent implements OnInit {
         };
         this.requestsService.createRequest(request).subscribe(
           response => {
+            this.alreadyRequested = true;
             //this.onToastSuccess('Success', 'Request sent successfully');
           },
           error => {

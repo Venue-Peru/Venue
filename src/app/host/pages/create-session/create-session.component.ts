@@ -91,7 +91,7 @@ export class CreateSessionComponent {
     //const uuid = this.tokenService.getUUIDFromToken(token);
     //if (!uuid) return;
     if (this.backgroundFile) {
-      const backgroundFilePath = `sessions/${uuid}/${Date.now()}_background`;
+      const backgroundFilePath = `sessions/${uuid}/background`;
       const backgroundFileRef = this.storage.ref(backgroundFilePath);
       const backgroundUploadTask = this.storage.upload(backgroundFilePath, this.backgroundFile);
 
@@ -106,6 +106,7 @@ export class CreateSessionComponent {
   }
 
   createSession_addBackgroundUrl(uuid: string, url: string) {
+    console.log('it got til here')
     this.sessionService.updateImage(uuid, url).subscribe(
       (session: Session) => {
         this.router.navigate(['/tickets-and-sessions/work/dashboard']);

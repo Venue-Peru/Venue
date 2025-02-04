@@ -4,7 +4,7 @@ export class Profile {
   name: string;
   email: number;
   bio: string;
-  birthdate: Date;
+  birthDate: Date;
   instagram: string;
   tiktok: string;
   icon: string;
@@ -18,7 +18,7 @@ export class Profile {
     this.instagram = '';
     this.tiktok = '';
     this.bio = '';
-    this.birthdate = new Date();
+    this.birthDate = new Date();
     this.icon = '';
     this.background = '';
   }

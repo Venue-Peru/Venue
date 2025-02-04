@@ -23,8 +23,8 @@ export class SessionsService extends BaseService<Session> {
     return this.http.post<Session>(`${this.basePath}${this.resourceEndpoint}/post-beta`, createSessionRequest).pipe();
   }
 
-  updateImage(uuid: String, icon: String) {
-    return this.http.put<Session>(`${this.basePath}${this.resourceEndpoint}/update-image/${uuid}`, {icon}).pipe();
+  updateImage(uuid: String, image: String) {
+    return this.http.put<Session>(`${this.basePath}${this.resourceEndpoint}/update-image/${uuid}`, {image}).pipe();
   }
 
   getAllByHostUuid(hostUuid: string) {

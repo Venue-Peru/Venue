@@ -4,13 +4,13 @@
 <div *ngIf="start">
   <div class="absolute flex profile-hover-container" style="margin-top: 6rem; margin-left: 2rem">
     <div class="absolute" style="pointer-events: none; z-index: 10;">
-      <div *ngIf="isThisUser" (click)="openEditDialog()" class="flex align-items-center justify-content-center"
+      <div *ngIf="isThisUser" (click)="onClickingEditIcon()" class="flex align-items-center justify-content-center"
            style="pointer-events: all; cursor: pointer; margin-top: 8rem; margin-left: 9rem; width: 3rem; height: 3rem; border-radius: 1.5rem; background-color: white">
         <i class="pi pi-pencil" style="font-size: 1.5rem; color: black"></i>
       </div>
     </div>
-    <img (click)="onClickingIcon()" [src]="host.icon == '' || host.background == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : host.icon" [alt]="host.username" [style]="'cursor: pointer'"
-         style="height: 12rem; width: 12rem; border-radius: 50%; z-index: 5">
+    <img (click)="onClickingIcon()" [src]="host.icon == '' || host.icon == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : host.icon" [alt]="host.username" [style]="'cursor: pointer'"
+         style="height: 12rem; width: 12rem; border-radius: 50%; z-index: 5; object-fit: cover;">
     <div *ngIf="isThisUser" class="hover-label" style="z-index: 5; pointer-events: none">Cambiar</div>
   </div>
   <div class="h-12rem flex profile-hover-container">
@@ -22,8 +22,11 @@
     <div style="padding-left: 15rem; padding-top: 1rem">
       <div class="flex justify-content-between">
         <div>
-          <h2 class="text-white">{{ host.name }}</h2>
-          <p class="text-white">&#64;{{ host.username }}</p>
+          <div class="flex align-items-baseline justify-content-center gap-3">
+            <h2 class="text-white">{{ host.name }}</h2>
+            <p class="text-white">&#64;{{ host.username }}</p>
+          </div>
+          <p class="text-white mt-1">{{ host.bio }}</p>
         </div>
         <div class="flex gap-4 pr-4">
           <div class="text-center">
@@ -90,13 +93,12 @@
   </div>
 </div>
 
-<!--
 <app-host-edit-fields [editDialogVisible]="editDialogVisible_fields" [host]="host"
-                      (onSave)="onSave_fields($event)" (onCancel)="onCancel_fields()"></app-host-edit-fields>
+                         (onSave)="onSave_fields($event)" (onCancel)="onCancel_fields()"/>
 
 <app-host-edit-icon [editDialogVisible]="editDialogVisible_icon" [host]="host"
-                    (onSave)="onSave_icon($event)" (onCancel)="onCancel_icon()"></app-host-edit-icon>
+                       (onSave)="onSave_icon($event)" (onCancel)="onCancel_icon()"/>
 
 <app-host-edit-background [editDialogVisible]="editDialogVisible_background" [host]="host"
-                          (onSave)="onSave_background($event)" (onCancel)="onCancel_background()"></app-host-edit-background>
--->
+                             (onSave)="onSave_background($event)" (onCancel)="onCancel_background()"/>
+
