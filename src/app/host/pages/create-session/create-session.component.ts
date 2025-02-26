@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Session} from "../../../sessions/model/session";
 import {Router} from "@angular/router";
 import {SessionsService} from "../../../sessions/services/sessions.service";
@@ -13,10 +13,16 @@ import {TokenService} from "../../../shared/services/token.service";
   templateUrl: './create-session.component.html',
   styleUrl: './create-session.component.css'
 })
-export class CreateSessionComponent {
+export class CreateSessionComponent implements OnInit {
   session = new Session();
+  segment = 0;
   backgroundImagePreview: string | ArrayBuffer | null = null;
   backgroundFile: File | null = null;
+  choosenEditingStyle: string = 'forms';
+  editingOptions: any[] = [
+    { label: 'Edición Formulario', value: 'forms' },
+    { label: 'Edición Vista Previa', value: 'preview' }
+  ];
 
   constructor(
     private router: Router,
@@ -25,6 +31,26 @@ export class CreateSessionComponent {
     private tokenService: TokenService
   ) {
 
+  }
+
+  ngOnInit(): void {
+    this.session.location = 'N/A';
+    let icon = sessionStorage.getItem('icon');
+    icon != null ? this.session.hostImage = icon : this.session.hostImage = '';
+  }
+
+  onForward() {
+    this.segment += 1;
+    if (this.segment === 2) {
+      this.createDialogSubmit();
+    }
+  }
+
+  onBackward() {
+    this.segment -= 1;
+    if (this.segment < 0) {
+      this.router.navigate(['/tickets-and-sessions/work/dashboard']);
+    }
   }
 
   createDialogSubmit() {
@@ -123,7 +149,7 @@ export class CreateSessionComponent {
     if (file) {
       this.backgroundFile = file;
       const reader = new FileReader();
-      reader.onload = (e) => this.backgroundImagePreview = reader.result;
+      reader.onload = (e) => this.session.sessionImage = reader.result;
       reader.readAsDataURL(file);
     }
   }

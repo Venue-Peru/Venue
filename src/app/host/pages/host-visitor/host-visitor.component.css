@@ -1,3 +1,7 @@
+* {
+  color: white;
+}
+
 .back {
   background-color: black;
 }
@@ -31,3 +35,27 @@
 .profile-hover-container:hover .hover-label {
   display: block;
 }
+
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border-radius: 1rem;
+  border: 2px solid #461777;
+  cursor: pointer;
+}
+
+.session-info {
+  flex: 1;
+  display: inline-block;
+}
+
+h3, p {
+  display: inline-block;
+}
+

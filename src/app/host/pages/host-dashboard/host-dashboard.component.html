@@ -1,22 +1,38 @@
 <!-- src/app/host/pages/host-dashboard/host-dashboard.component.html -->
 <div class="dashboard-container">
-  <div class="flex justify-content-between align-items-center" style="padding: 1rem">
-    <h1 style="font-size: 2rem;">Bienvenido de vuelta [NOMBRE]</h1>
-    <i class="pi pi-cog" style="font-size: 2rem; cursor: pointer;"></i>
+  <div class="flex justify-content-between align-items-center" style="padding: 1rem 1rem 0 1rem">
+    <h1 style="font-size: 2rem; color: white">Bienvenido de vuelta &#64;{{ username }}</h1>
   </div>
-  <div class="grid">
-    <div class="col-6" style="cursor: pointer;" (click)="onToObserveSessions()">
-      <div class="option-button" style="background-color: #FF5733; height: 80vh; border-radius: 1rem">
-        <h2 style="padding: 1rem; pointer-events: none">Administrar mis sesiones</h2>
-      </div>
+    <div class="flex justify-content-end align-items-center" style="padding: 0 1rem 1rem 1rem">
+        <h3 style="color: white">Estado de subscripción: <span style="color: #33FF57">Activo</span></h3>
     </div>
-    <div class="col-6" style="cursor: pointer;" (click)="onToCreateSession()">
-      <div class="option-button" style="background-color: #33FF57; height: 80vh; border-radius: 1rem">
-        <div class="absolute" style="padding-left: 19%; padding-top: 17%">
-          <h4>Tienes 4 permisos</h4>
+  <div class="grid">
+    <div class="col-6" style="cursor: pointer; position: relative" (click)="onToObserveSessions()">
+        <div class="absolute flex justify-content-end align-items-end p-2" style="right: 0; bottom: 0; width: 100%;">
+            <h1 style="font-size: 2.4rem; padding: 1rem; pointer-events: none; color: white; filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.7)); z-index: 2">Administrar</h1>
         </div>
-        <h2 style="padding: 1rem; pointer-events: none">Crear una nueva sesión</h2>
-      </div>
+        <div class="flex justify-content-center align-items-center"
+             style="background: linear-gradient(135deg, #FF5733, #FF8C33);
+              height: 30vh; border-radius: 1rem; position: relative; overflow: hidden;
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            <i class="pi pi-database"
+               style="font-size: 12rem; color: white;
+              filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.7));">
+            </i>
+        </div>
+    </div>
+    <div class="col-6" style="cursor: pointer; position: relative" (click)="onToCreateSession()">
+        <div class="absolute flex justify-content-end align-items-end p-2" style="right: 0; bottom: 0; width: 100%">
+            <h1 style="font-size: 2.4rem; padding: 1rem; pointer-events: none; color: white; filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.7)); z-index: 2">Crear</h1>
+        </div>
+        <div class="flex justify-content-center align-items-center"
+             style="background: linear-gradient(135deg, #33FF57, #33FF8C); height: 30vh; border-radius: 1rem">
+            <i class="pi pi-plus"
+               style="font-size: 12rem; color: white;
+               filter: drop-shadow(4px 4px 10px rgba(0, 0, 0, 0.7));">
+
+            </i>
+        </div>
     </div>
   </div>
   <!--

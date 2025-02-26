@@ -1,37 +1,40 @@
 <p-dialog
   [(visible)]="editDialogVisible"
-  header="Administrar Sesión"
+  [header]="'Administrar: ' + session.name"
   [style]="{ width: '50%' }"
   [modal]="true"
   [resizable]="false"
+  [draggable]="false"
   [baseZIndex]="10000"
   (onHide)="onClickingCancel()"
+  [styleClass]="'dialog'"
   >
+    <div class="pt-5"></div>
   <div class="grid">
-    <div class="col-6">
-      <div class="promoter-codes-list">
-        <h2>Promoter Codes</h2>
-        <ul>
-          <li *ngFor="let code of promoterCodes" (click)="onPromoterCodeClick(code)">
-            {{ code.code }}
-          </li>
-        </ul>
-      </div>
+    <div *ngIf="promoterCodes.length > 0" class="col-6">
+        <div class="flex flex-column justify-content-center align-items-start gap-2">
+            <h2>Códigos de Promotor <span>({{promoterCodes.length}})</span></h2>
+            <div *ngFor="let code of promoterCodes" class="flex flex-column justify-content-between" (click)="onPromoterCodeClick(code)"
+                 style="background: linear-gradient(135deg, #000000, #461777);
+                 border-radius: 1rem; color: white; cursor: pointer; width: 100%; height: 7vh; padding: 0.5rem">
+                <h3>Código No. {{code.id}}</h3>
+                <p>Permisos actuales: {{code.permissions}}/{{code.initialPermissions}}</p>
+            </div>
+        </div>
     </div>
-    <div class="col-6">
-      <div class="flex align-items-center justify-content-center">
-        <h2>Crear nuevo código</h2>
-        <p>{{promoterCodes.length}}</p>
+    <div [class]="getColumnSize()">
+      <div class="flex flex-column align-items-start justify-content-between" style="height: 100%">
+          <div class="pb-3" style="width: 100%">
+              <h2 class="pb-2">Crear nuevo código de promotor</h2>
+              <form class="p-fluid" style="width: 100%">
+                  <div class="p-field">
+                      <label for="numAceptaciones">Número de permisos</label>
+                      <input style="width: 100%" id="numAceptaciones" placeholder="0" type="number" pInputText [(ngModel)]="permissions" />
+                  </div>
+              </form>
+          </div>
+          <button pButton style="width: 100%" type="button" label="Crear Código" (click)="onClickingSubmit()"></button>
       </div>
-      <form class="p-fluid">
-        <div class="p-field">
-          <label for="numAceptaciones">Numero de aceptaciones</label>
-          <input id="numAceptaciones" type="number" pInputText [(ngModel)]="permissions" />
-        </div>
-        <div class="p-field">
-          <button pButton type="button" label="Crear Codigo" (click)="onClickingSubmit()"></button>
-        </div>
-      </form>
     </div>
   </div>
 </p-dialog>

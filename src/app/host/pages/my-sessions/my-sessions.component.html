@@ -1,23 +1,25 @@
-<div class="grid">
-  <div class="col-12">
+<div *ngIf="loadingSessions()">
+    <app-loading/>
+</div>
+<div *ngIf="!areThereSessions() && !loadingSessions()">
+    <p>No tienes sesiones.</p>
+</div>
+<div *ngIf="areThereSessions()" style="padding: 1rem">
     <h2 class="p-3">Mis Sesiones</h2>
-    <div *ngIf="sessions.length === 0">
-      <p>No tienes sesiones.</p>
-    </div>
     <div *ngFor="let session of sessions" class="session-row" [ngStyle]="{'background-image': session.sessionImage ? 'url(' + session.sessionImage + ')' : 'none', 'background-color': session.sessionImage ? 'transparent' : 'black'}">
-      <div class="session-info">
-        <h3>{{ session.name }}</h3>
-        <p>{{ session.date | date:'yyyy-MM-dd HH:mm' }}</p>
-      </div>
-      <div class="session-actions">
-        <button pButton type="button" label="Administrar" (click)="onAdministrateSession(session)"></button>
-        <button pButton type="button" label="Ver" (click)="onViewSession(session)"></button>
-      </div>
+        <div class="session-info">
+            <h3 style="background-color: black; margin: 1rem; padding: 0.2rem">{{ session.name }}</h3>
+            <p style="background-color: black; margin: 1rem; padding: 0.2rem">{{ session.date | date:'yyyy-MM-dd HH:mm' }}</p>
+        </div>
+        <div class="session-actions">
+            <button pButton type="button" label="Administrar" (click)="onAdministrateSession(session)"></button>
+            <button pButton type="button" label="Editar" (click)="onEditSession(session)"></button>
+            <button pButton type="button" label="Ver" (click)="onViewSession(session)"></button>
+        </div>
     </div>
-  </div>
 </div>
 
 <app-administrating-session [editDialogVisible]="editDialogVisible_administration"
-                            [sessionUuid]="selectedSessionUuid"
+                            [session]="selectedSession"
                             (onSave)="onSave_administration()"
                             (onCancel)="onCancel_administration()"></app-administrating-session>

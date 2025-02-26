@@ -24,5 +24,18 @@ export class TokenService {
     return decoded?.role || ''; // Adjust the key name based on your token's payload
   }
 
+  getUsernameFromToken(token: string): string {
+    const decoded = this.decodeToken(token);
+    return decoded?.username || '';
+  }
+
+  getToken(): string {
+    let token = localStorage.getItem('token');
+    if (!token) {
+      return "";
+    }
+    return token;
+  }
+
   constructor() { }
 }

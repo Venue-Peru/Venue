@@ -2,11 +2,13 @@
   display: flex;
   gap: 16px;
   padding: 16px;
+  min-height: 93vh;
+  align-items: stretch;
 }
 
 .sidebar {
   flex: 1;
-  max-width: 300px;
+  max-width: 500px;
   background-color: #f8f8f8;
   padding: 16px;
   border-radius: 8px;

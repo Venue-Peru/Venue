@@ -1,7 +1,7 @@
 export class Session {
   id: number;
   hostId: number;
-  sessionImage: string;
+  sessionImage: string | ArrayBuffer | null | undefined;
   hostImage: string;
   name: string;
   hostName: string;

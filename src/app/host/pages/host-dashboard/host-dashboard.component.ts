@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {TokenService} from "../../../shared/services/token.service";
 
 @Component({
   selector: 'app-host-dashboard',
@@ -7,9 +8,11 @@ import {Router} from "@angular/router";
   styleUrl: './host-dashboard.component.css'
 })
 export class HostDashboardComponent implements OnInit {
+  username: string | null = null;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
   }
 
@@ -22,5 +25,6 @@ export class HostDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.username = this.tokenService.getUsernameFromToken(this.tokenService.getToken());
   }
 }

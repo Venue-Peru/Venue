@@ -3,6 +3,7 @@ import {Profile} from "../../../profiles/model/profile";
 import {PromoterCodesService} from "../../../requests/services/promoter-codes.service";
 import {CreatePromoterCodeRequest} from "../../../requests/model/create-promoter-code-request";
 import {PromoterCode} from "../../../requests/model/promoter-code";
+import {Session} from "../../../sessions/model/session";
 
 @Component({
   selector: 'app-administrating-session',
@@ -10,14 +11,15 @@ import {PromoterCode} from "../../../requests/model/promoter-code";
   styleUrl: './administrating-session.component.css'
 })
 export class AdministratingSessionComponent implements OnChanges {
-  permissions: number = 10;
+  permissions: number = 0;
   promoterCodes: PromoterCode[] = [];
   @Input() editDialogVisible: boolean = false;
-  @Input() sessionUuid = '';
+  @Input() session: Session = {} as Session;
   @Output() onSave = new EventEmitter();
   @Output() onCancel = new EventEmitter();
   dialogVisible_show: boolean = false;
   focusedPromoterCode: PromoterCode = {} as PromoterCode;
+  initialized: boolean = false;
 
   constructor(
     private promoterCodesService: PromoterCodesService,
@@ -30,24 +32,31 @@ export class AdministratingSessionComponent implements OnChanges {
   }
 
   fetchPromoterCodes() {
-    this.promoterCodesService.getPromoterCodesBySessionUuid(this.sessionUuid).subscribe(
+    this.promoterCodesService.getPromoterCodesBySessionUuid(this.session.uuid).subscribe(
       response => {
         this.promoterCodes = response;
-      }
+        this.initialized = true;
+      },
+        error => {
+        this.initialized = true;
+        }
     );
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.initialized = false;
     if (changes['editDialogVisible'] && this.editDialogVisible) {
       this.fetchPromoterCodes();
     }
     if (changes['editDialogVisible'] && !this.editDialogVisible) {
       this.promoterCodes = [];
+      this.initialized = true;
     }
   }
 
   onClickingSubmit() {
-    let createPromoterCodeRequest = new CreatePromoterCodeRequest(this.sessionUuid, this.permissions);
+    if (this.permissions <= 0) return;
+    let createPromoterCodeRequest = new CreatePromoterCodeRequest(this.session.uuid, this.permissions);
     this.promoterCodesService.createPromoterCode(createPromoterCodeRequest).subscribe(
       response => {
         this.focusedPromoterCode = response;
@@ -56,7 +65,6 @@ export class AdministratingSessionComponent implements OnChanges {
         this.onSave.emit();
       }
     );
-
   }
 
   onClickingCancel() {
@@ -66,5 +74,12 @@ export class AdministratingSessionComponent implements OnChanges {
 
   onShowClose() {
     this.dialogVisible_show = false;
+  }
+
+  getColumnSize() {
+    if (this.promoterCodes.length > 0) {
+      return 'col-6';
+    }
+    return 'col-12'
   }
 }

@@ -1,17 +1,24 @@
 <p-dialog
   [(visible)]="dialogVisible"
-  header="Administrar Sesión"
-  [style]="{ width: '50%' }"
+  [header]="'Código de Promotor No. ' + promoterCode.id"
+  [style]="{ width: '25%' }"
   [modal]="true"
   [resizable]="false"
+  [draggable]="false"
   [baseZIndex]="10000"
   (onHide)="onClickingClose()"
   >
-  <div class="center-content">
-    <h3>Promoter Code Details</h3>
-    <p><strong>UUID:</strong> {{ promoterCode.code }}</p>
-    <p><strong>4-digit Code:</strong> {{ promoterCode.typableCode }}</p>
-    <p><strong>URL:</strong> <a [href]="promoterUrl" target="_blank">{{ promoterUrl }}</a></p>
-    <button pButton type="button" label="Copy URL" (click)="copyToClipboard()"></button>
+    <div class="grid">
+        <div class="col-6 flex flex-column">
+            <p>URL creada:</p>
+            <button pButton severity="danger" type="button" label="Copiar solo URL" (click)="copyUrlToClipboard()"></button>
+        </div>
+        <div class="col-6 flex flex-column">
+            <p>Código a digitar en URL:</p>
+            <h1>{{promoterCode.typableCode}}</h1>
+        </div>
+    </div>
+  <div class="flex flex-column align-items-center justify-content-center">
+    <button style="width:100%" pButton type="button" label="Copiar invitación" (click)="copyInvitationToClipboard()"></button>
   </div>
 </p-dialog>

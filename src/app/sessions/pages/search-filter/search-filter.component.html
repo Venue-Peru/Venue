@@ -1,22 +1,19 @@
 <div class="search-page">
   <!-- Sidebar for Filters -->
   <aside class="sidebar">
-    <h4>Filters</h4>
-
+    <h4>Filtros</h4>
     <!-- Categories -->
     <p-multiSelect
       [options]="categories"
       [(ngModel)]="selectedCategories"
       placeholder="Categories"
     ></p-multiSelect>
-
     <!-- Price Range -->
     <div class="filter">
       <h5>Price Range</h5>
       <p-slider [(ngModel)]="priceRange" range="true"></p-slider>
       <p>{{ priceRange[0] }} - {{ priceRange[1] }} USD</p>
     </div>
-
     <!-- Ratings -->
     <div class="filter">
       <h5>Customer Ratings</h5>
@@ -56,7 +53,7 @@
             (click)="onVisitingSession(session)"
             label="Ver Detalles"
             icon="pi pi-shopping-cart"
-            class="p-button-text"
+            class=""
           ></button>
         </div>
       </p-card>

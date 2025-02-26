@@ -1,0 +1,4 @@
+:host ::ng-deep .dialog .p-dialog-header {
+    background-color: black;
+    color: white;
+}

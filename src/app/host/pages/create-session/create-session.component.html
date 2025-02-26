@@ -1,104 +1,121 @@
 <!-- src/app/host/pages/create-session/create-session.component.html -->
-<div style="padding: 2rem">
-  <h1 style="padding-bottom: 2rem">Crear nueva sesión:</h1>
-  <div class="grid">
-    <div class="col-6">
-      <div class="field col-12 mb-3">
-        <label class="block mb-2">Imagen</label>
-        <div class="flex flex-column align-items-center">
-          <img *ngIf="backgroundImagePreview" [src]="backgroundImagePreview || 'https://via.placeholder.com/150'" alt="Background Image" style="border-radius: 1rem; width: 100%; height: auto; object-fit: cover; margin-bottom: 0.5rem;">
-          <input type="file" (change)="onBackgroundFileSelected($event)" style="display: none;" #backgroundFileInput>
-          <p-button label="Agregar Imagen" icon="pi pi-plus" (onClick)="backgroundFileInput.click()"></p-button>
-        </div>
-      </div>
+<div class="fixed flex align-items-center gap-2" style="bottom: 0; right: 1rem; height: 6vh;">
+    <p-button [label]="segment != 0 ? 'Retroceder' : 'Cancelar'" (onClick)="onBackward()"></p-button>
+    <p-button [disabled]="segment == 1" [label]="segment != 1 ? 'Siguiente' : 'Crear Session'" (onClick)="onForward()"></p-button>
+</div>
+<app-calendar-selection *ngIf="segment == 0"/>
+<div *ngIf="segment == 1" class="flex flex-column gap-4">
+    <div class="flex justify-content-between p-4">
+        <h1>Crear nueva sesión:</h1>
+        <p-selectButton [options]="editingOptions" [(ngModel)]="choosenEditingStyle" [unselectable]="true" aria-labelledby="basic" ></p-selectButton>
     </div>
-    <div class="col-6">
-      <form (ngSubmit)="createDialogSubmit()" #sessionForm="ngForm">
-        <div class="grid p-fluid">
-          <div class="field col-12 mb-3">
-            <label for="title" class="block mb-2">Nombre</label>
-            <input
-              id="title"
-              type="text"
-              pInputText
-              [(ngModel)]="session.name"
-              name="title"
-              class="w-full"
-              required
-            >
-          </div>
+    <div *ngIf="choosenEditingStyle == 'forms'">
+        <div class="flex justify-content-between gap-4 p-4">
+            <div class="field mb-3">
+                <label class="block mb-2">Imagen</label>
+                <div class="flex flex-column align-items-center">
+                    <div *ngIf="session.sessionImage == ''" class="flex flex-column align-items-center justify-content-center"
+                         style="border-radius: 1rem; width: 40vw; height: 50vh; background-color: grey; object-fit: cover; margin-bottom: 0.5rem;"
+                    >
 
-          <div class="field col-12 mb-3">
-            <label for="description" class="block mb-2">Descripción</label>
-            <textarea
-              id="description"
-              pInputTextarea
-              [(ngModel)]="session.description"
-              name="description"
-              [autoResize]="true"
-              rows="3"
-              class="w-full"
-              required
-            ></textarea>
-          </div>
+                        <h1>Sin imagen</h1>
+                        <h3>Haz click para agregar</h3>
+                    </div>
+                    <img *ngIf="session.sessionImage != ''" [src]="session.sessionImage || 'https://via.placeholder.com/150'" alt="Background Image" style="border-radius: 1rem; width: 40vw; height: 50vh; object-fit: cover; margin-bottom: 0.5rem;">
+                    <input type="file" (change)="onBackgroundFileSelected($event)" style="display: none;" #backgroundFileInput>
+                    <p-button label="Agregar Imagen" icon="pi pi-plus" (onClick)="backgroundFileInput.click()"></p-button>
+                </div>
+            </div>
+            <form (ngSubmit)="createDialogSubmit()" #sessionForm="ngForm">
+                <div class="grid p-fluid">
+                    <div class="field col-12 mb-3">
+                        <label for="title" class="block mb-2">Nombre</label>
+                        <input
+                                id="title"
+                                type="text"
+                                pInputText
+                                [(ngModel)]="session.name"
+                                name="title"
+                                class="w-full black-text"
+                                required
+                        >
+                    </div>
 
-          <div class="field col-12 mb-3">
-            <label for="date" class="block mb-2">Fecha del Evento</label>
-            <p-calendar
-              id="date"
-              [(ngModel)]="session.date"
-              name="date"
-              [showIcon]="true"
-              dateFormat="yy-mm-dd"
-              [readonlyInput]="true"
-              class="w-full"
-              required
-            ></p-calendar>
-          </div>
+                    <div class="field col-12 mb-3">
+                        <label for="description" class="block mb-2">Descripción</label>
+                        <textarea
+                                id="description"
+                                pInputTextarea
+                                [(ngModel)]="session.description"
+                                name="description"
+                                [autoResize]="true"
+                                rows="3"
+                                class="w-full black-text"
+                                required
+                        ></textarea>
+                    </div>
 
-          <div class="field col-12 mb-3">
-            <label for="time" class="block mb-2">Hora de Inicio</label>
-            <p-calendar
-              id="time"
-              [(ngModel)]="session.time"
-              name="time"
-              timeOnly="true"
-              hourFormat="24"
-              [showIcon]="true"
-              class="w-full"
-              required
-            ></p-calendar>
-          </div>
+                    <div class="field col-12 mb-3">
+                        <label for="date" class="block mb-2">Fecha del Evento</label>
+                        <p-calendar
+                                id="date"
+                                [(ngModel)]="session.date"
+                                name="date"
+                                [showIcon]="true"
+                                dateFormat="yy-mm-dd"
+                                [readonlyInput]="true"
+                                class="w-full black-text"
+                                [disabled]="true"
+                                required
+                        ></p-calendar>
+                    </div>
 
-          <div class="field col-12 mb-3">
-            <label for="location" class="block mb-2">Ubicación</label>
-            <input
-              id="location"
-              type="text"
-              pInputText
-              [(ngModel)]="session.location"
-              name="location"
-              class="w-full"
-              required
-            >
-          </div>
+                    <div class="field col-12 mb-3">
+                        <label for="time" class="block mb-2">Hora de Inicio</label>
+                        <p-calendar
+                                id="time"
+                                [(ngModel)]="session.time"
+                                name="time"
+                                timeOnly="true"
+                                hourFormat="24"
+                                [showIcon]="true"
+                                [disabled]="true"
+                                class="w-full black-text"
+                                required
+                        ></p-calendar>
+                    </div>
+
+                    <div class="field col-12 mb-3">
+                        <label for="location" class="block mb-2">Ubicación</label>
+                        <input
+                                id="location"
+                                type="text"
+                                pInputText
+                                [(ngModel)]="session.location"
+                                name="location"
+                                class="w-full black-text"
+                                [disabled]="true"
+                                required
+                        >
+                    </div>
+                </div>
+
+                <div class="flex justify-content-end">
+                    <p-button
+                            label="Cancelar"
+                            icon="pi pi-times"
+                            (onClick)="createDialogCancel()"
+                            styleClass="p-button-text"
+                    ></p-button>
+                    <p-button
+                            label="Guardar"
+                            icon="pi pi-check"
+                            (onClick)="createDialogSubmit()"
+                            [disabled]="!sessionForm.form.valid"
+                    ></p-button>
+                </div>
+            </form>
         </div>
-
-        <div class="flex justify-content-end">
-          <p-button
-            label="Cancelar"
-            icon="pi pi-times"
-            (onClick)="createDialogCancel()"
-            styleClass="p-button-text"
-          ></p-button>
-          <p-button
-            label="Guardar"
-            icon="pi pi-check"
-            (onClick)="createDialogSubmit()"
-            [disabled]="!sessionForm.form.valid"
-          ></p-button>
-        </div>
-      </form>
     </div>
-  </div>
+    <app-session-section [session]="session" [editMode]="true" *ngIf="choosenEditingStyle == 'preview'"/>
 </div>

@@ -10,8 +10,12 @@
 }
 
 :host ::ng-deep .p-button {
-  width: 14rem;
-  height: 2.33rem;
+  width: 12rem;
+  height: 3rem;
+  background-color: #FF6F61;
+  border-color: #FF6F61;
+  border-radius: 2rem;
+  font-size: 1.4rem;
 }
 
 .clickable {

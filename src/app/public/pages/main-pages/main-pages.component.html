@@ -1,3 +1,7 @@
-<app-navbar *ngIf="role == 'ROLE_USER' || role == 'VISITOR'"></app-navbar>
-<app-host-navbar *ngIf="role == 'ROLE_HOST'"></app-host-navbar>
-<router-outlet></router-outlet>
+<div style="max-height: 10vh">
+    <app-navbar *ngIf="role == 'ROLE_USER' || role == 'VISITOR'"></app-navbar>
+    <app-host-navbar *ngIf="role == 'ROLE_HOST'"></app-host-navbar>
+</div>
+<div style="min-height: 90vh; background-color: #000000">
+    <router-outlet></router-outlet>
+</div>

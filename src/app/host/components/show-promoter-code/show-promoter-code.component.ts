@@ -23,9 +23,18 @@ export class ShowPromoterCodeComponent {
     return `${window.location.origin}/tickets-and-sessions/promoter-checklist/${this.promoterCode.code}`;
   }
 
-  copyToClipboard() {
+  copyUrlToClipboard() {
     navigator.clipboard.writeText(this.promoterUrl).then(() => {
-      alert('URL copied to clipboard');
+      alert('URL copiada.');
     });
+  }
+
+  copyInvitationToClipboard() {
+    let invitation = `Elige a tus invitados en Venue:
+
+Ingresa aquí: ${this.promoterUrl}\n\nEscribe este código al ingresar: ${this.promoterCode.typableCode}`;
+    navigator.clipboard.writeText(invitation).then(() => {
+      alert('Invitación copiada.');
+    })
   }
 }

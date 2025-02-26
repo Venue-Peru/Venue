@@ -10,15 +10,23 @@ import {TokenService} from "../../../shared/services/token.service";
   styleUrl: './my-sessions.component.css'
 })
 export class MySessionsComponent implements OnInit {
-  sessions: Session[] = [];
+  sessions: Session[] | null = null;
   editDialogVisible_administration: boolean = false;
-  selectedSessionUuid: string = '';
+  selectedSession: Session = {} as Session;
 
   constructor(
     private sessionService: SessionsService,
     private tokenService: TokenService,
     private router: Router
   ) {}
+
+  loadingSessions(): boolean {
+    return this.sessions == null;
+  }
+
+  areThereSessions(): boolean {
+    return (this.sessions != null && this.sessions.length > 0);
+  }
 
   ngOnInit() {
     // get uuid
@@ -30,7 +38,7 @@ export class MySessionsComponent implements OnInit {
   }
 
   onAdministrateSession(session: Session) {
-    this.selectedSessionUuid = session.uuid;
+    this.selectedSession = session;
     this.editDialogVisible_administration = true;
   }
 
@@ -38,8 +46,8 @@ export class MySessionsComponent implements OnInit {
     this.router.navigate([`/tickets-and-sessions/events/${session.uuid}`]);
   }
 
-  onClickingAdministate() {
-    this.editDialogVisible_administration = true;
+  onEditSession(session: Session) {
+    this.router.navigate([`/tickets-and-sessions/edit-event/${session.uuid}`]);
   }
 
   onSave_administration() {

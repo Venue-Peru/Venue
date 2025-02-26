@@ -1,19 +1,8 @@
-.circle-icon {
-  background-color: white;
-  border-radius: 50%;
-  border: 1px solid #ccc; /* Optional: Add a border */
-  width: 50px; /* Adjust the size as needed */
-  height: 50px; /* Adjust the size as needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 :host ::ng-deep .p-button {
-  width: 3rem;
-  height: 2.33rem;
-  background-color: darkorange;
-  border-color: darkorange;
+  width: 3.66rem;
+  height: 3rem;
+  background-color: #FF6F61;
+  border-color: #FF6F61;
 }
 
 .clickable {

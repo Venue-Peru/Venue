@@ -15,15 +15,6 @@ import {MessageService} from "primeng/api";
 export class SessionVisitorComponent implements OnInit {
   start: boolean | null = false;
   alreadyRequested: boolean = true;
-  requestOptions = [
-    { name: 'General', key: 'G' },
-    { name: 'VIP', key: 'V' },
-    { name: 'Super VIP', key: 'SV' },
-    { name: 'Box 1', key: 'B1' },
-    { name: 'Box 2', key: 'B2' },
-    { name: 'Ya tengo código', key: 'C' },
-  ]
-  selectedRequest!: string;
   session: Session = {} as Session;
 
   constructor(
@@ -64,43 +55,4 @@ export class SessionVisitorComponent implements OnInit {
       }
     );
   }
-
-  onRequest() {
-    // get the selected request index
-    const selectedRequestIndex = this.requestOptions.findIndex(option => option.name === this.selectedRequest);
-    // get uuid clean
-    let uuidPromise = this.tokenService.getUUIDFromToken(localStorage.getItem('token') ?? '');
-    let uuid = '';
-    if (uuidPromise != null) {
-      uuid = uuidPromise;
-    }
-    this.route.params.subscribe(params => {
-      if (params['eventId']) {
-        let request: SessionRequestDto = {
-          sessionUuid: params['eventId'],
-          profileUuid: uuid,
-          desiredCategory: selectedRequestIndex
-        };
-        this.requestsService.createRequest(request).subscribe(
-          response => {
-            this.alreadyRequested = true;
-            //this.onToastSuccess('Success', 'Request sent successfully');
-          },
-          error => {
-            //this.onToastFailure('Error', 'Request already sent or not logged in');
-          }
-        );
-      }
-    });
-  }
-
-  /*
-  onToastSuccess(summary: string, detail: string) {
-    this.messageService.add({severity: 'success', summary: summary, detail: detail});
-  }
-
-  onToastFailure(summary: string, detail: string) {
-    this.messageService.add({severity: 'error', summary: summary, detail: detail});
-  }
-   */
 }

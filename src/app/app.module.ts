@@ -61,6 +61,15 @@ import { ForgotPasswordComponent } from './iam/pages/forgot-password/forgot-pass
 import { HostEditIconComponent } from './host/components/host-edit-icon/host-edit-icon.component';
 import { HostEditBackgroundComponent } from './host/components/host-edit-background/host-edit-background.component';
 import { HostEditFieldsComponent } from './host/components/host-edit-fields/host-edit-fields.component';
+import { HeroSliderComponent } from './shared/components/hero-slider/hero-slider.component';
+import { CarouselComponent } from './shared/components/carousel/carousel.component';
+import { SessionSectionComponent } from './sessions/components/session-section/session-section.component';
+import { SessionEditorComponent } from './sessions/pages/session-editor/session-editor.component';
+import { MapComponent } from './shared/components/map/map.component';
+import { InsertImageComponent } from './shared/components/insert-image/insert-image.component';
+import { CalendarSelectionComponent } from './host/components/calendar-selection/calendar-selection.component';
+import {SelectButtonModule} from "primeng/selectbutton";
+import { BraceletPreviewModelComponent } from './_models/bracelet-preview-model/bracelet-preview-model.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +107,14 @@ import { HostEditFieldsComponent } from './host/components/host-edit-fields/host
     HostEditIconComponent,
     HostEditBackgroundComponent,
     HostEditFieldsComponent,
+    HeroSliderComponent,
+    CarouselComponent,
+    SessionSectionComponent,
+    SessionEditorComponent,
+    MapComponent,
+    InsertImageComponent,
+    CalendarSelectionComponent,
+    BraceletPreviewModelComponent,
   ],
     imports: [
         BrowserModule,
@@ -108,6 +125,7 @@ import { HostEditFieldsComponent } from './host/components/host-edit-fields/host
         ToolbarModule,
         NgOptimizedImage,
         CheckboxModule,
+        SelectButtonModule,
         CardModule,
         ImageModule,
         FormsModule,

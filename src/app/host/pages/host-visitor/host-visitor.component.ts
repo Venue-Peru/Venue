@@ -6,6 +6,8 @@ import {TokenService} from "../../../shared/services/token.service";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {EditHostFieldsRequest} from "../../model/edit-host-fields-request";
+import {Session} from "../../../sessions/model/session";
+import {SessionsService} from "../../../sessions/services/sessions.service";
 @Component({
   selector: 'app-host-visitor',
   templateUrl: './host-visitor.component.html',
@@ -14,7 +16,7 @@ import {EditHostFieldsRequest} from "../../model/edit-host-fields-request";
 export class HostVisitorComponent implements OnInit {
   start: boolean | null = false;
   host: Host = {} as Host;
-  posts: any[] = [];
+  sessions: Session[] | null = null;
   isThisUser: boolean = false;
   editDialogVisible_fields: boolean = false;
   editDialogVisible_icon: boolean = false;
@@ -24,6 +26,7 @@ export class HostVisitorComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private sessionService: SessionsService,
     private hostService: HostService,
     private tokenService: TokenService,
     private storage: AngularFireStorage
@@ -46,6 +49,12 @@ export class HostVisitorComponent implements OnInit {
       }
     });
     this.checkIfThisUser();
+    // get uuid
+    let uuid = this.tokenService.getUUIDFromToken(localStorage.getItem('token') || '') || '';
+    this.sessionService.getAllByHostUuid(uuid).subscribe(sessions => {
+      this.sessions = sessions;
+      console.log(sessions);
+    });
   }
 
   // layer 1
@@ -193,6 +202,14 @@ export class HostVisitorComponent implements OnInit {
         this.host = host;
       }
     )
+  }
+
+  isSessionsLoading() {
+    return this.sessions == null;
+  }
+
+  areThereSessions() {
+    return (this.sessions != null && this.sessions.length > 0);
   }
 
 }

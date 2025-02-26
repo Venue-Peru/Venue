@@ -1,147 +1,46 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {MainSiteService} from "../../../_services/main-site.service";
+import {SessionAtHeroSliderResponse} from "../../../_dtos/responses/session-at-hero-slider-response";
+import {Session} from "../../../sessions/model/session";
+import {CarouselsResponse} from "../../../_dtos/responses/carousels-response";
 
 @Component({
   selector: 'app-it-main-page',
   templateUrl: './it-main-page.component.html',
   styleUrl: './it-main-page.component.css'
 })
-export class ItMainPageComponent {
-  carousels = [
-    {
-      title: 'A donde van tus amigos',
-      items: [
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
+export class ItMainPageComponent implements OnInit {
+  recommendations: Session[] | null = null;
+  carousels: CarouselsResponse[] | null = null;
+  somethingLoaded = false;
+
+  constructor(
+      private router: Router,
+      private mainSiteService: MainSiteService,
+  ) {}
+
+  ngOnInit(): void {
+    this.mainSiteService.getRecommendations().subscribe(
+        sessions => {
+          this.recommendations = sessions;
+          this.somethingLoaded = true;
         },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
+        error => {
+          this.recommendations = [];
+          this.somethingLoaded = true;
+        }
+    )
+    this.mainSiteService.getCarousels().subscribe(
+        carousels => {
+          this.carousels = carousels;
+          this.somethingLoaded = true;
         },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-      ]
-    },
-    {
-      title: 'Cerca a ti (Barranco, Lima)',
-      items: [
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-        {
-          backgroundImage: '',
-          sessionLogoImage: '',
-          hostLogoImage: '',
-        },
-      ]
-    }
-  ]
-  stories = [
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#ff0000',
-      sessionToAttend: 'Cata',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#43dccf',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#ff20f4',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#ffcc00',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#f5f5f5',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#f5f5f5',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#f5f5f5',
-      sessionToAttend: 'Dizco',
-    },
-    {
-      profilePic: 'https://www.w3schools.com/w3images/lights.jpg',
-      backgroundColor: '#f5f5f5',
-      sessionToAttend: 'Dizco',
-    }
-  ]
-  constructor(private router: Router) {}
+        error => {
+            this.somethingLoaded = true;
+        }
+    )
+  }
 
   onToSession(id: number) {
     this.router.navigate(['/tickets-and-sessions/events']);

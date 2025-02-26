@@ -1,8 +1,6 @@
-<div class="back align-content-center" style="height: 100vh">
-  <div class="flex justify-content-center align-items-center">
+<div class="flex justify-content-center align-items-center" [style]="height != null ? 'height: ' + height : 'height: 90vh'">
     <div class="flex gap-2 align-items-center">
       <p-progressSpinner styleClass="spinner" strokeWidth="8" fill="#ffffff"></p-progressSpinner>
       <h1 class="text-white">Cargando...</h1>
     </div>
-  </div>
 </div>

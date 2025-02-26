@@ -13,7 +13,7 @@
          style="height: 12rem; width: 12rem; border-radius: 50%; z-index: 5; object-fit: cover;">
     <div *ngIf="isThisUser" class="hover-label" style="z-index: 5; pointer-events: none">Cambiar</div>
   </div>
-  <div class="h-12rem flex profile-hover-container">
+  <div style="height: 12rem" class="flex profile-hover-container">
     <img (click)="onClickingBackground()" [src]="host.background == '' || host.background == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : host.background" [alt]="host.username" [style]="'cursor: pointer'"
          class="w-screen h-full" style="object-fit: cover; object-position: center;" />
     <div *ngIf="isThisUser" class="hover-label" style="pointer-events: none">Cambiar</div>
@@ -53,44 +53,21 @@
     </div>
   </div>
 
-  <div class="px-4 py-2" *ngFor="let post of posts">
-    <div class="px-3 py-2" style="background-color: #171717; border-radius: 1rem">
-      <div class="flex justify-content-between pt-2 pb-3">
-        <div class="flex align-items-center gap-2">
-          <img [src]="post.profileImage" [alt]="post.fullName"
-               class="" style="border-radius: 50%; width: 3rem; object-fit: cover; height: 2.5rem">
-          <div>
-            <p class="text-white"><b>{{ post.fullName }}</b> posteó</p>
-            <p class="text-white">{{post.time}}</p>
-          </div>
-        </div>
-        <div class="flex align-items-center gap-2">
-          <h1 class="text-white">&#64;</h1>
-          <img [src]="post.hostImage" [alt]="post.fullName"
-               class="" style="border-radius: 20%; width: 2.5rem; object-fit: cover; height: 2.5rem">
-          <h3 class="text-white">{{ post.sessionName }}</h3>
-        </div>
-      </div>
-      <div>
-        <div class="flex gap-2 mb-1">
-          <img [src]="post.photos[0]" [alt]="post.fullName"
-               class="" style="border-radius: 1rem; width: 50%; object-fit: cover; max-height: 12rem">
-          <img [src]="post.photos[1]" [alt]="post.fullName"
-               class="" style="border-radius: 1rem; width: 50%; object-fit: cover; max-height: 12rem">
-        </div>
-        <div class="flex gap-2 mb-1">
-          <img [src]="post.photos[2]" [alt]="post.fullName"
-               class="" style="border-radius: 1rem; width: 50%; object-fit: cover; max-height: 12rem">
-          <img [src]="post.photos[3]" [alt]="post.fullName"
-               class="" style="border-radius: 1rem; width: 50%; object-fit: cover; max-height: 12rem">
-        </div>
-      </div>
-      <div class="flex justify-content-start align-items-center gap-2 pt-2 pb-3">
-        <p-button label="Me Gusta" class="p-button-raised p-button-rounded"></p-button>
-        <p class="text-white">{{post.likes}}</p>
-      </div>
+    <div *ngIf="!isSessionsLoading() && !areThereSessions()" style="height: 58vh" class="flex flex-column align-items-center justify-content-center gap-4">
+        <i class="pi pi-times" style="font-size: 12rem"></i>
+        <h3>Este host no tiene <span style="color: #ffec8a">Sessions</span> todavía, pero pronto...</h3>
     </div>
-  </div>
+    <div class="p-3">
+        <h3 class="pl-2 pb-2" style="color: #ffec8a">Sessions:</h3>
+        <div *ngFor="let session of sessions"
+             class="session-row"
+             [ngStyle]="{'background-image': session.sessionImage ? 'url(' + session.sessionImage + ')' : 'none', 'background-color': session.sessionImage ? 'transparent' : 'black'}">
+            <div class="session-info">
+                <h3 style="background-color: black; margin: 1rem; padding: 0.2rem">{{ session.name }}</h3>
+                <p style="background-color: black; margin: 1rem; padding: 0.2rem">{{ session.date | date:'yyyy-MM-dd HH:mm' }}</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <app-host-edit-fields [editDialogVisible]="editDialogVisible_fields" [host]="host"

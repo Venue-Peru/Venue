@@ -21,6 +21,7 @@ import {authenticationGuard} from "./iam/services/auth.guard";
 import {hostGuard} from "./iam/services/host.guard";
 import {userGuard} from "./iam/services/user.guard";
 import {authenticatedGuard} from "./iam/services/authenticated.guard";
+import {SessionEditorComponent} from "./sessions/pages/session-editor/session-editor.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [authenticatedGuard] },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'tickets-and-sessions', component: MainPagesComponent, children: [
       { path: '', pathMatch: "full", component: ItMainPageComponent },
       { path: 'events/:eventId', component: SessionVisitorComponent },
+          { path: 'edit-event/:eventId', component: SessionEditorComponent },
       { path: 'host/:hostId', component: HostVisitorComponent },
       { path: 'view/:eventId', component: ProfileVisitorComponent },
       { path: 'promoter-checklist/:code', component: PromoterChecklistComponent },
