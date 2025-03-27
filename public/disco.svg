@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <!-- Outer circle representing the globe -->
+    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2" fill="none"/>
+
+    <!-- Equator (horizontal line) -->
+    <line x1="2" y1="12" x2="22" y2="12" stroke="white" stroke-width="2"/>
+
+    <!-- Curved meridians -->
+    <path d="M12 2 C16 4, 16 20, 12 22" stroke="white" stroke-width="2" fill="none"/>
+    <path d="M12 2 C8 4, 8 20, 12 22" stroke="white" stroke-width="2" fill="none"/>
+</svg>

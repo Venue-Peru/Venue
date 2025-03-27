@@ -9,6 +9,20 @@ import {Session} from "../../model/session";
   styleUrl: './search-filter.component.css'
 })
 export class SearchFilterComponent implements OnInit {
+  typeValue: number = 1;
+  types: any[] = [
+    { name: 'Sessions', value: 1 },
+    { name: 'Hosts', value: 2 },
+    { name: 'Users', value: 3 }
+  ];
+  sidebarToggle = false;
+  // sessions-exclusive
+  sessionTypeValue: number = 2;
+  sessionType: any[] = [
+      { name: 'Disco', value: 1 },
+      { name: 'Bar', value: 2 },
+  ]
+  //
   sessions: Session[] = [];
   selectedCategories: string[] = [];
   selectedRatings: number[] = [];
@@ -37,5 +51,9 @@ export class SearchFilterComponent implements OnInit {
         this.sessions = sessions;
       });
     });
+  }
+
+  openSidebar(): void {
+    this.sidebarToggle = !this.sidebarToggle;
   }
 }

@@ -18,6 +18,26 @@
   font-size: 1.4rem;
 }
 
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
 .clickable {
   cursor: pointer;
+}
+
+.right-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 1486px) {
+  .right-side {
+    display: none;
+  }
 }

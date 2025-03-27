@@ -1,31 +1,30 @@
+<div class="new-sidebar-opener" (click)="openSidebar()">
+    <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+        <path d="M8 4l8 8-8 8" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
 <div class="search-page">
   <!-- Sidebar for Filters -->
-  <aside class="sidebar">
-    <h4>Filtros</h4>
-    <!-- Categories -->
-    <p-multiSelect
-      [options]="categories"
-      [(ngModel)]="selectedCategories"
-      placeholder="Categories"
-    ></p-multiSelect>
-    <!-- Price Range -->
-    <div class="filter">
-      <h5>Price Range</h5>
-      <p-slider [(ngModel)]="priceRange" range="true"></p-slider>
-      <p>{{ priceRange[0] }} - {{ priceRange[1] }} USD</p>
+    <div class="new-sidebar"
+         [ngClass]="
+         {
+            'new-sidebar-opened': sidebarToggle,
+            'new-sidebar-closed': !sidebarToggle
+         }
+        "
+
+    >
+        <h1>Filtros</h1>
+        <p-selectButton [options]="types" [(ngModel)]="typeValue" optionLabel="name" optionValue="value"></p-selectButton>
+        <div class="new-sidebar-selection" *ngIf="typeValue == 1">
+            <h3>Tipo de Session</h3>
+            <p-selectButton [options]="sessionType" [(ngModel)]="sessionTypeValue" optionLabel="name" optionValue="value"></p-selectButton>
+        </div>
+        <div *ngIf="typeValue == 2">
+        </div>
+        <div *ngIf="typeValue == 3">
+        </div>
     </div>
-    <!-- Ratings -->
-    <div class="filter">
-      <h5>Customer Ratings</h5>
-      <div *ngFor="let rating of [5, 4, 3, 2, 1]">
-        <p-checkbox
-          [(ngModel)]="selectedRatings"
-          [value]="rating"
-          label="{{ rating }} stars & up"
-        ></p-checkbox>
-      </div>
-    </div>
-  </aside>
 
   <!-- Main Content -->
   <div class="content">

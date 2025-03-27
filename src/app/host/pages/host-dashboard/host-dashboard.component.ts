@@ -24,6 +24,10 @@ export class HostDashboardComponent implements OnInit {
     this.router.navigate(['/tickets-and-sessions/work/dashboard/my-sessions']);
   }
 
+  onToVenues() {
+    this.router.navigate(['/tickets-and-sessions/work/dashboard/my-venues']);
+  }
+
   ngOnInit(): void {
     this.username = this.tokenService.getUsernameFromToken(this.tokenService.getToken());
   }

@@ -1,80 +1,34 @@
-<div class="ticket-container">
-  <div class="ticket-header">
-    <div class="qr-code">
-      <h3>QR Code</h3>
-      <img *ngIf="bracelet.qrCodeBase64" [src]="'data:image/png;base64,' + bracelet.qrCodeBase64" alt="QR Code" />
-    </div>
-    <div class="session-image">
-      <h1>{{ bracelet.name }}</h1>
-      <img [src]="bracelet.sessionImage" alt="{{ bracelet.name }}" />
-    </div>
-  </div>
-  <div class="ticket-body">
-    <div class="ticket-details">
-      <p><strong>Localización:</strong> {{ bracelet.location }}</p>
-      <p><strong>Día:</strong> {{ bracelet.startDate }}</p>
-      <p><strong>Descripción:</strong> {{ bracelet.description }}</p>
-      <p><strong>DJ:</strong> {{ bracelet.dj }}</p>
-      <p><strong>Dress Code:</strong> {{ bracelet.dressCode }}</p>
-      <p><strong>Edad Mínima:</strong> {{ bracelet.ageMinimum }}</p>
-      <p><strong>Tipo de Música:</strong> {{ bracelet.musicType }}</p>
-    </div>
-    <div class="user-details">
-      <p><strong>Usuario:</strong> {{ fragileProfile.name }}</p>
-      <p><strong>DNI:</strong> {{ fragileProfile.identityCard }}</p>
-      <p><strong>Promotor:</strong> TBA</p>
-      <p><strong>Tipo de Brazalete:</strong> BOX VIP</p>
-      <p><strong>Tiempo de Entrada:</strong> 21:00 - 01:00</p>
-    </div>
-  </div>
+<div class="bracelet-full-image">
+    <app-bracelet-full-image/>
 </div>
-
-<!--
-
-<div class="grid">
-  <div class="col-4">
-    <p>QR-Code</p>
-  </div>
-  <div class="col-8">
-    <div class="flex justify-content-between py-1 px-2">
-      <p>31/Octubre/2024</p>
-      <p>20:00 - 04:00</p>
+<div class="bracelet-info" *ngIf="bracelet.qrCodeBase64">
+    <div class="bracelet-header">
+        <img class="bracelet-mobile-photo" src="bracelets-preview/blue-bracelet.png" alt="Bracelet"/>
+        <div class="qr-code" *ngIf="bracelet.qrCodeBase64">
+            <img [src]="'data:image/png;base64,' + bracelet.qrCodeBase64" alt="QR Code"/>
+        </div>
     </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>DIZCO: HALLOWEEN ABRAKADABRA</p>
+    <div class="bracelet-qr-code-container">
+        <div class="qr-code" *ngIf="bracelet.qrCodeBase64">
+            <img [src]="'data:image/png;base64,' + bracelet.qrCodeBase64" alt="QR Code"/>
+        </div>
     </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>Calle Caterino Miranda 154, Barranco, Perú.</p>
+    <div class="ticket-body">
+        <div class="ticket-details">
+            <p><strong>Localización:</strong> {{ bracelet.location }}</p>
+            <p><strong>Día:</strong> {{ bracelet.startDate }}</p>
+            <p><strong>Descripción:</strong> {{ bracelet.description }}</p>
+            <p><strong>DJ:</strong> {{ bracelet.dj }}</p>
+            <p><strong>Dress Code:</strong> {{ bracelet.dressCode }}</p>
+            <p><strong>Edad Mínima:</strong> {{ bracelet.ageMinimum }}</p>
+            <p><strong>Tipo de Música:</strong> {{ bracelet.musicType }}</p>
+        </div>
+        <div class="user-details">
+            <p><strong>Usuario:</strong> {{ fragileProfile.name }}</p>
+            <p><strong>DNI:</strong> {{ fragileProfile.identityCard }}</p>
+            <p><strong>Promotor:</strong> TBA</p>
+            <p><strong>Tipo de Brazalete:</strong> BOX VIP</p>
+            <p><strong>Tiempo de Entrada:</strong> 21:00 - 01:00</p>
+        </div>
     </div>
-  </div>
 </div>
-<div class="grid" style="height: 100vh;">
-  <div class="col-10">
-    <div class="flex justify-content-between py-1 px-2">
-      <p>Joaquín Montoya Marín</p>
-    </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>DNI: 74429702</p>
-    </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>Promotor: Luis Herrera</p>
-    </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>BOX VIP</p>
-    </div>
-    <div class="flex justify-content-between py-1 px-2">
-      <p>21:00 - 01:00</p>
-    </div>
-  </div>
-
-  <div class="col-2 flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-    <div style="height: 10%; width: 30%; background-color: blue; margin-bottom: 0.5rem;"></div>
-    <div style="height: 75%; width: 30%; background-color: brown; position: relative;">
-      <div style="position: absolute; top: 10%; height: 5%; width: 100%; background-color: blue;"></div>
-      <div style="position: absolute; bottom: 10%; height: 5%; width: 100%; background-color: blue;"></div>
-    </div>
-    <div style="height: 10%; width: 30%; background-color: blue; margin-top: 0.5rem;"></div>
-  </div>
-</div>
-
--->

@@ -22,6 +22,8 @@ import {hostGuard} from "./iam/services/host.guard";
 import {userGuard} from "./iam/services/user.guard";
 import {authenticatedGuard} from "./iam/services/authenticated.guard";
 import {SessionEditorComponent} from "./sessions/pages/session-editor/session-editor.component";
+import {MyVenuesComponent} from "./host/pages/my-venues/my-venues.component";
+import {CreateVenueComponent} from "./host/pages/create-venue/create-venue.component";
 
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate: [authenticatedGuard] },
@@ -45,6 +47,8 @@ const routes: Routes = [
       { path: 'work/dashboard', component: HostDashboardComponent, canActivate: [hostGuard] },
       { path: 'work/dashboard/create-session', component: CreateSessionComponent, canActivate: [hostGuard] },
       { path: 'work/dashboard/my-sessions', component: MySessionsComponent, canActivate: [hostGuard] },
+          { path: 'work/dashboard/my-venues', component: MyVenuesComponent, canActivate: [hostGuard] },
+          { path: 'work/dashboard/create-venue', component: CreateVenueComponent, canActivate: [hostGuard] },
     ]},
 ];
 

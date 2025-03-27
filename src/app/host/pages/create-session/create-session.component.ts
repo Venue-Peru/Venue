@@ -132,7 +132,6 @@ export class CreateSessionComponent implements OnInit {
   }
 
   createSession_addBackgroundUrl(uuid: string, url: string) {
-    console.log('it got til here')
     this.sessionService.updateImage(uuid, url).subscribe(
       (session: Session) => {
         this.router.navigate(['/tickets-and-sessions/work/dashboard']);

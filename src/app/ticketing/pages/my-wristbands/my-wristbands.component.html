@@ -1,25 +1,17 @@
-<div class="grid pt-2" style="background-color: black; min-height: 100vh">
-  <div *ngFor="let bracelet of miniBracelets"
-       class="h-12rem sm:col-4 col-6 flex justify-content-center align-items-center"
-        style="cursor:pointer" (click)="onClickingBracelet(bracelet)">
-    <div class="absolute z-3 h-5rem flex flex-column justify-content-center align-items-center" style="background-color: white; width: 17%">
-      <div class="flex justify-content-center align-items-center">
-        <i class="pi pi-qrcode"></i>
-        <div>
-          <p>{{bracelet.name}}</p>
+<div class="grid pt-4" style="background-color: black; min-height: calc(100vh - 96px)">
+    <div *ngFor="let bracelet of miniBracelets"
+         class="h-12rem sm:col-4 col-6 flex justify-content-center align-items-center"
+         style="cursor:pointer" (click)="onClickingBracelet(bracelet)">
+        <div class="bracelet-container">
+            <img class="bracelet-image" src="bracelets-preview/blue-bracelet.png" alt="Bracelet" />
+            <div class="bracelet-info">
+                <div class="bracelet-info-header">
+                    <i class="pi pi-qrcode"></i>
+                    <p>{{bracelet.name}}</p>
+                </div>
+                <p>{{ formatDate(bracelet.startDate) }}</p>
+            </div>
         </div>
-      </div>
-      <div class="flex justify-content-center align-items-center">
-        <p>{{ formatDate(bracelet.startDate) }}</p>
-      </div>
     </div>
-    <div class="h-10rem" style="margin-left: 5%; background-color: brown; width: 40%; border-radius: 1rem; z-index: 2">
-    </div>
-    <div class="absolute h-8rem" style="margin-right: 5%; background-color: rosybrown; width: 10%; border-top-left-radius: 1rem; z-index: 1; border-bottom-left-radius: 1rem">
-    </div>
-    <div class="absolute" style="height: 1.5rem; margin-right: 6%; margin-bottom: 8.5rem; background-color: brown; width: 7%; z-index: 0; border-top-left-radius: 1rem">
-    </div>
-    <div class="absolute" style="height: 1.5rem; margin-right: 6%; margin-top: 8.5rem; background-color: brown; width: 7%; z-index: 0; border-bottom-left-radius: 1rem">
-    </div>
-  </div>
 </div>
+

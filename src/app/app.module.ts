@@ -70,6 +70,11 @@ import { InsertImageComponent } from './shared/components/insert-image/insert-im
 import { CalendarSelectionComponent } from './host/components/calendar-selection/calendar-selection.component';
 import {SelectButtonModule} from "primeng/selectbutton";
 import { BraceletPreviewModelComponent } from './_models/bracelet-preview-model/bracelet-preview-model.component';
+import {CascadeSelectModule} from "primeng/cascadeselect";
+import { BraceletFullImageComponent } from './_models/bracelet-full-image/bracelet-full-image.component';
+import { MyVenuesComponent } from './host/pages/my-venues/my-venues.component';
+import { CreateVenueComponent } from './host/pages/create-venue/create-venue.component';
+import { VenueCardComponent } from './host/components/venue-card/venue-card.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +120,10 @@ import { BraceletPreviewModelComponent } from './_models/bracelet-preview-model/
     InsertImageComponent,
     CalendarSelectionComponent,
     BraceletPreviewModelComponent,
+    BraceletFullImageComponent,
+    MyVenuesComponent,
+    CreateVenueComponent,
+    VenueCardComponent,
   ],
     imports: [
         BrowserModule,
@@ -125,7 +134,6 @@ import { BraceletPreviewModelComponent } from './_models/bracelet-preview-model/
         ToolbarModule,
         NgOptimizedImage,
         CheckboxModule,
-        SelectButtonModule,
         CardModule,
         ImageModule,
         FormsModule,
@@ -139,8 +147,10 @@ import { BraceletPreviewModelComponent } from './_models/bracelet-preview-model/
         InputTextareaModule,
         ToastModule,
         MultiSelectModule,
+        SelectButtonModule,
         SliderModule,
-        MenuModule
+        MenuModule,
+        CascadeSelectModule
     ],
   providers: [
     provideHttpClient(withInterceptors([AuthInterceptor])),
