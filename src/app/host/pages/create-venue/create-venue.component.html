@@ -1,0 +1,22 @@
+<div class="header">
+    <h1>Crear Venue:</h1>
+</div>
+<div class="main-container">
+    <div class="venue-form">
+        <h3>Nombre:</h3>
+        <input type="text" pInputText [(ngModel)]="newVenue.name" />
+        <h3>Ubicación:</h3>
+        <input type="text" pInputText [(ngModel)]="newVenue.location" />
+        <h3>Imagen:</h3>
+        <input type="file" (change)="onBackgroundFileSelected($event)" style="display: none;" #backgroundFileInput>
+        <p-button label="Agregar Imagen" icon="pi pi-plus" (onClick)="backgroundFileInput.click()"></p-button>
+    </div>
+    <div class="venue-preview">
+        <app-venue-card [venue]="newVenue"/>
+    </div>
+</div>
+<div class="footer">
+    <p-button (click)="onCancel()" label="Cancelar"></p-button>
+    <p-button (click)="onSave()" label="Guardar"></p-button>
+</div>
+

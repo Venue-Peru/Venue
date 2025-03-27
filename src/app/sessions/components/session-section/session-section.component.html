@@ -1,0 +1,79 @@
+<div class="back">
+    <div class="grid" style="width: 100%">
+        <div class="absolute flex justify-content-center" style="width: 100%; z-index: 2">
+            <img [src]="session.hostImage" [alt]="session.hostName" style="margin-top: 2rem; border-radius: 50%; width: 8rem; height: 8rem; border: 2px solid black; object-fit: cover"/>
+        </div>
+        <div class="col-6 editable-image-container" (click)="openImageDialog()">
+            <div *ngIf="session.sessionImage == ''" class="editable-image flex flex-column justify-content-center align-items-center" style="background-color: grey">
+                <h1>Sin imagen</h1>
+                <h3>Haz click para agregar</h3>
+            </div>
+            <img *ngIf="session.sessionImage != ''" [class]="editMode ? 'editable-image main-image' : 'main-image'" [src]="session.sessionImage" [alt]="session.name" />
+            <div *ngIf="editMode" class="edit-overlay">Editar</div>
+        </div>
+        <div class="col-6 align-content-center px-6">
+            <div class="flex flex-column align-items-center justify-content-center">
+                <h1 [contentEditable]="editMode" (blur)="updateTitle($event)">{{session.name}}</h1>
+                <div class="flex justify-content-end align-items-center pt-4" style="width: 100%">
+                    <h2>Host: {{session.hostName}}</h2>
+                </div>
+                <div class="session-container pt-2">
+                    <div class="session-item">
+                        <div class="session-header">
+                            <img src="prototype-Pinpoint-icon.png" alt="pinpoint" style="width: 1.5rem; height: 1.5rem;"/>
+                            <p>Ubicación</p>
+                        </div>
+                        <p>{{session.location}}</p>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-header">
+                            <img src="prototype-Clock-icon.png" alt="clock" style="width: 1.5rem; height: 1.5rem;"/>
+                            <p>Hora</p>
+                        </div>
+                        <p>{{session.date}}, {{session.time}}</p>
+                    </div>
+                    <!-- Add more .session-item elements as needed -->
+                </div>
+                <div class="session-container pt-4">
+                    <div class="session-item" style="background: linear-gradient(to bottom, #bb33ff, #c56ff4); width: 100%; padding: 1rem;">
+                        <div class="session-header">
+                            <img src="prototype-Music-icon.png" alt="music" style="width: 1.5rem; height: 1.5rem;"/>
+                            <p style="color: black">Música</p>
+                        </div>
+                        <p style="color: black">{{session.musicType}}</p>
+                    </div>
+                    <div class="session-item" style="background: linear-gradient(to bottom, #33FF57, #66f1ac); width: 100%; padding: 1rem;">
+                        <div class="session-header">
+                            <img src="prototype-Shirt-icon.png" alt="clock" style="width: 1.5rem; height: 1.5rem;"/>
+                            <p style="color: black">Dress Code</p>
+                        </div>
+                        <p style="color: black">{{session.dressCode}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-column justify-content-center align-items-start gap-1 px-2 pt-4">
+                <h3 style="font-weight: bold">Descripción</h3>
+                <p [contentEditable]="editMode" (blur)="updateDescription($event)">{{session.description}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid pt-4" style="width: 100%">
+        <div class="col-6" style="background: linear-gradient(to bottom, #000000 0%, #142940 100%);">
+        </div>
+        <div class="col-6 p-4">
+            <h1 class="p-4">Elige tu pulsera:</h1>
+            <div *ngFor="let option of requestOptions" class="p-2" (click)="onClickingOption(option.key)">
+                <app-bracelet-preview-model [braceletType]="option.braceletType" [selected]="selectedRequest == option.key" [text]="option.name" style="cursor: pointer"></app-bracelet-preview-model>
+            </div>
+            <div class="flex justify-content-around align-items-center pt-4">
+                <p-button (click)="onRequest()"
+                          [disabled]="alreadyRequested || editMode"
+                          [label]="alreadyRequested ? 'Enviado' : 'Solicitar'"
+                          class="custom-button"></p-button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-insert-image [visibility]="imageDialog" [originalImage]="getSessionImage()" (onCancel)="closeImageDialog()" (onSave)="saveImageCache($event)"></app-insert-image>

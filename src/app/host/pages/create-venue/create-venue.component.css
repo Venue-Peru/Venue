@@ -1,0 +1,38 @@
+.header {
+    padding: 24px;
+    color: white;
+}
+
+.main-container {
+    color: white;
+    padding: 24px;
+    display: flex;
+    height: calc(100vh - 124px);
+}
+
+.venue-form {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    padding: 124px;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
+}
+
+.venue-preview {
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+    padding: 24px;
+    background: rgb(34, 34, 34);
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: white;
+    gap: 16px;
+}

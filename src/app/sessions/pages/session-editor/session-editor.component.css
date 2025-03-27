@@ -1,0 +1,147 @@
+.editing-header {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 12px;
+    background-color: #333333;
+    gap: 16px;
+}
+
+.confirmation-footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 12px;
+    background-color: #333333;
+    gap: 16px;
+}
+
+.edit-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    height: calc(100vh - 184px);
+}
+
+.icon-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.icon-controls p {
+    color: white;
+}
+
+.icon-container {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 22rem;
+    width: 48rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    gap: 6px;
+    padding: 24px;
+    cursor: pointer;
+}
+
+.icon-container h1 {
+    font-size: 4rem;
+}
+
+.icon-container h2 {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+}
+
+.icon-image-wrapper {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: calc(100% + 100px);
+    overflow: hidden; /* still clips the bottom if needed */
+    /* Apply a mask that fades the top 100px from transparent to opaque */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 50px, black 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50px, black 100%);
+}
+
+
+.icon-image {
+    position: absolute;
+
+    /* Use the CSS variables with fallbacks */
+    top: var(--img-top, -2rem);
+    left: var(--img-left, 50%);
+    transform: translateX(-50%) scale(var(--img-scale, 1));
+
+    /*
+      Keep aspect ratio. The max-height ensures the image doesn’t exceed
+      the container's bottom (plus the offset).
+    */
+    max-height: calc(100% + 2rem);
+    width: auto;
+    height: auto;
+    display: block;
+    transition: transform .2s;
+}
+
+.host-image-wrapper {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.host-image {
+    width: 100px;
+    height: auto;
+    display: block;
+    border-radius: 0 0 1rem 0;
+}
+
+.icon-container:hover .icon-image {
+    transform: translateX(-50%) scale(var(--img-scale, 1)) translateY(-3%);
+}
+
+.edit-business-logic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 24px;
+    gap: 24px;
+    height: calc(100vh - 184px);
+    color: white;
+}
+
+.bracelet-reference {
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.bracelet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bracelet-image {
+    width: 200px;
+}
+
+.permit-code-container {
+    display: flex;
+    gap: 8px;
+}

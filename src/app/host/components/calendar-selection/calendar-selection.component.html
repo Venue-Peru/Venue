@@ -1,0 +1,64 @@
+<div class="flex flex-column p-4 gap-4" style="height: 84vh">
+    <h1>Nueva Session</h1>
+    <div
+            class="flex gap-4 align-items-center"
+            style="width: 100%; height: 100%; background-color: black; min-height: 24rem"
+    >
+        <div class="flex flex-column gap-2" style="width: 30%; height: 48.7rem">
+            <h2>
+                1. Elegir <span style="color: #FFEC8AFF">Venue</span> donde se realizará:
+            </h2>
+            <div
+                    class="flex flex-column align-items-center justify-content-center"
+                    style="
+        background: repeating-linear-gradient(0deg, grey, grey 10px, #555 10px, #555 20px);
+        height: 100%;
+        border-radius: 1rem;
+      "
+            >
+                <i class="pi pi-lock" style="font-size: 3rem"></i>
+                <h1>Próximamente</h1>
+            </div>
+        </div>
+
+        <div class="flex flex-column gap-2" style="width: 35vw; height: 48.7rem">
+            <h2>2. Elegir fecha y horario de nueva Session:</h2>
+            <h3>Fecha:</h3>
+            <p-calendar
+                    styleClass="calendar-fixed"
+                    [inline]="true"
+                    [minDate]="minDate"
+                    [showWeek]="true"
+            ></p-calendar>
+            <h3>Hora de inicio:</h3>
+            <p-calendar
+                    styleClass="calendar-fixed"
+                    [inline]="true"
+                    [timeOnly]="true"
+                    [hourFormat]="'12'"
+            ></p-calendar>
+            <h3>Hora de cierre de puertas:</h3>
+            <p-calendar
+                    styleClass="calendar-fixed"
+                    [inline]="true"
+                    [timeOnly]="true"
+                    [hourFormat]="'12'"
+            ></p-calendar>
+        </div>
+        <div class="flex flex-column gap-2" style="width: 35%; height: 48.7rem">
+            <h2>3. Comparar con horario del día:</h2>
+            <div
+                    class="flex flex-column align-items-center justify-content-center"
+                    style="
+        background: repeating-linear-gradient(0deg, grey, grey 10px, #555 10px, #555 20px);
+        height: 100%;
+        border-radius: 1rem;
+      "
+            >
+                <i class="pi pi-lock" style="font-size: 3rem"></i>
+                <h1>Próximamente</h1>
+            </div>
+        </div>
+    </div>
+
+</div>

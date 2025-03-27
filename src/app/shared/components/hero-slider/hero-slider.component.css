@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative; /* Create a stacking context */
+    width: 250px; /* Optional: Adjust as needed */
+    height: 250px; /* Optional: Adjust as needed */
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    position: absolute; /* Position them on top of each other */
+    top: 0; /* Align from the top */
+    left: 0; /* Align from the left */
+    z-index: 1; /* Default stacking order */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+}
+
+.square.blue {
+    background-color: lightblue;
+    z-index: 1; /* Lowest layer */
+}
+
+.square.orange {
+    background-color: orange;
+    top: 20px; /* Slight offset */
+    left: -20px; /* Slight offset */
+    z-index: 2;
+}
+
+.square.yellow {
+    background-color: gold;
+    top: 40px; /* Slight offset */
+    left: -40px; /* Slight offset */
+    z-index: 3; /* Top layer */
+}
+
+.image-to-click {
+    position: relative;           /* Establish positioning context */
+    height: 32vh;                 /* Keep the original height */
+    cursor: pointer;
+    overflow: hidden;             /* Hide any overflow from the scaling effect */
+    border-radius: 8px;           /* Optional: adds subtle rounded corners */
+}
+
+/* Inner container that will be scaled on hover */
+.scale-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Pseudo-element for the gradient overlay on the image */
+.scale-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+/* Hover state: scale the inner image and adjust brightness */
+.image-to-click:hover .scale-effect {
+    transform: scale(1.02);
+    filter: brightness(80%);
+}
+
+/* Optional: intensify the overlay on hover */
+.image-to-click:hover .scale-effect::before {
+    opacity: 0.9;
+}
+
+/* Style for the text overlay */
+.text-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 2;                   /* Ensure it appears above the scale-effect */
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Optional: adjust heading sizes */
+.text-overlay h1 {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.text-overlay h2 {
+    font-size: 1.2em;
+    margin: 0;
+    padding-top: 5px;
+    font-weight: normal;
+}
+

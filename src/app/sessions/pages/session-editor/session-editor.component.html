@@ -1,0 +1,79 @@
+<app-loading *ngIf="start == false"/>
+<app-no-internet *ngIf="start == null"/>
+<div *ngIf="start == true">
+    <div class="editing-header">
+        <p-selectButton [options]="editTypes" [(ngModel)]="editTypeValue" optionLabel="name" optionValue="value"></p-selectButton>
+    </div>
+    <div class="edit-icon-container" *ngIf="editTypeValue == 1">
+        <div class="icon-container" [ngStyle]="{ 'background-image': 'url(' + backgroundImagePreview + ')' }">
+            <div class="icon-image-wrapper">
+                <img
+                        class="icon-image"
+                        [src]="highImagePreview"
+                        alt="Chanel"
+                        [style.--img-top]="offsetTop + 'rem'"
+                        [style.--img-left]="offsetLeft + '%'"
+                        [style.--img-scale]="scale"
+                />
+            </div>
+            <h1>{{ session.name }}</h1>
+            <h2>{{ session.date }}</h2>
+            <div class="host-image-wrapper">
+                <img class="host-image" [src]="session.hostImage" [alt]="session.name"/>
+            </div>
+        </div>
+
+        <div class="icon-controls">
+            <div>
+                <p>Imagen Resaltante (.png):</p>
+                <input type="file" (change)="onHighFileSelected($event)" style="display: none;" #highFileInput>
+                <p-button label="Cambiar Imagen" icon="pi pi-plus" (onClick)="highFileInput.click()"></p-button>
+            </div>
+            <div>
+                <p>Background:</p>
+                <input type="file" (change)="onBackgroundFileSelected($event)" style="display: none;" #backgroundFileInput>
+                <p-button label="Cambiar Background" icon="pi pi-plus" (onClick)="backgroundFileInput.click()"></p-button>
+
+            </div>
+        </div>
+
+        <div class="icon-controls">
+            <div>
+                <p>Agrandar</p>
+                <input type="text" pInputText [(ngModel)]="scale" class="w-full mb-4"/>
+                <p-slider [(ngModel)]="scale" [min]="0" [max]="10" [step]="0.1" class="w-full" />
+            </div>
+            <div>
+                <p>Trasladar-X</p>
+                <input type="text" pInputText [(ngModel)]="offsetLeft" class="w-full mb-4"/>
+                <p-slider [(ngModel)]="offsetLeft" [min]="0" [max]="100" [step]="1" class="w-full" />
+            </div>
+            <div>
+                <p>Trasladar-Y</p>
+                <input type="text" pInputText [(ngModel)]="offsetTop" class="w-full mb-4"/>
+                <p-slider [(ngModel)]="offsetTop" [min]="0" [max]="32" [step]="0.1" class="w-full" />
+            </div>
+        </div>
+
+    </div>
+    <app-session-section [session]="session" [editMode]="true" *ngIf="editTypeValue == 2"/>
+    <div class="edit-business-logic-container" *ngIf="editTypeValue == 3">
+        <div class="bracelet-header">
+            <h1>Brazaletes:</h1>
+            <p-button icon="pi pi-plus" label="Agregar Nuevo Rango"/>
+        </div>
+        <div class="permit-code-container">
+            <p-checkbox [(ngModel)]="braceletCodePermit" [binary]="true" />
+            <h2>Permitir códigos de canjeo</h2>
+        </div>
+        <div class="bracelet-reference" *ngFor="let bracelet of braceletsPresent">
+            <h1>{{ bracelet.name }}</h1>
+            <p-dropdown [options]="braceletColorTypes" [(ngModel)]="bracelet.color" optionLabel="name" placeholder="Elegir color" />
+            <img class="bracelet-image" [src]="'bracelets-preview/' + bracelet.color.acronym + '-bracelet.png'" [alt]="bracelet.name + ' Bracelet'"/>
+        </div>
+    </div>
+    <div class="confirmation-footer">
+        <p-button label="Cancelar"></p-button>
+        <p-button label="Guardar"></p-button>
+    </div>
+</div>

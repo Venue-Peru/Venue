@@ -1,0 +1,12 @@
+<app-loading *ngIf="!areThereCarousels()"></app-loading>
+<div *ngIf="areThereCarousels()">
+    <div *ngFor="let carousel of carousels" class="carousel-container">
+        <h1 class="carousel-title">{{ carousel.carouselName }}</h1>
+        <div class="carousel" (wheel)="onWheel($event)">
+            <div class="carousel-item" *ngFor="let session of carousel.sessions" (click)="onToSession(session)">
+                <img [src]="session.sessionImage" [alt]="session.name" class="session-image" />
+                <p class="session-name">{{ session.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>

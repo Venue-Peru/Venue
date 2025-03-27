@@ -1,0 +1,22 @@
+<p-dialog header="Editar ícono de perfil"
+          [(visible)]="visibility"
+          [modal]="true"
+          [closable]="true"
+          (onHide)="onDialogCancel()">
+    <div class="flex align-items-center justify-content-center">
+        <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+        <div class="flex flex-column align-items-center justify-content-center">
+            <h3>Panorama actual</h3>
+            <img [src]="originalImage == null ? 'https://avatars.githubusercontent.com/u/56156010?v=4' : originalImage" alt="Panorama actual" style="width: 15rem; height: 30vh; object-fit: cover;">
+        </div>
+        <div class="flex flex-column align-items-center justify-content-center ml-4">
+            <h3 *ngIf="imagePreview">Panorama nuevo</h3>
+            <img *ngIf="imagePreview" [src]="imagePreview" alt="Panorama nuevo" style="width: 15rem; height: 30vh; object-fit: cover;">
+        </div>
+    </div>
+
+    <p-footer class="flex justify-content-center align-items-center">
+        <p-button class="mr-2" label="Agregar imagen" icon="pi pi-plus" (onClick)="fileInput.click()"></p-button>
+        <p-button label="Guardar" icon="pi pi-check" (onClick)="onDialogAccept()"></p-button>
+    </p-footer>
+</p-dialog>

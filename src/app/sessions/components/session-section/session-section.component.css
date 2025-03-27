@@ -1,0 +1,135 @@
+* {
+    color: white;
+    font-family: "Noto Sans Caucasian Albanian", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.back {
+    background-color: black;
+}
+
+.grid {
+    margin: 0;
+    padding: 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+:host ::ng-deep .p-button {
+    width: 14rem;
+    height: 4rem;
+}
+
+[contenteditable="true"] {
+    display: inline-block;
+    padding: 4px;
+    border: 2px solid transparent; /* Initially invisible */
+    border-radius: 4px;
+    transition: border 0.2s ease-in-out; /* Smooth transition */
+}
+
+/* Show the border when hovering or focusing */
+[contenteditable="true"]:hover,
+[contenteditable="true"]:focus {
+    border: 2px solid white;
+    outline: none;
+}
+
+.editable-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.main-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.editable-image {
+    transition: filter 0.3s ease-in-out; /* Smooth darkening effect */
+}
+
+.editable-image-container:hover .editable-image {
+    filter: brightness(70%); /* Darken image on hover */
+    cursor: pointer;
+}
+
+.edit-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Dark background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.editable-image-container:hover .edit-overlay {
+    opacity: 1; /* Show "Edit" text on hover */
+}
+
+.session-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* or space-evenly / space-between, as needed */
+    gap: 2rem;  /* This is the space between items */
+    width: 100%;
+}
+
+/* Ensure each session item is positioned relative */
+.session-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* For every item except the first, add a centered vertical divider */
+.session-item:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: -1rem; /* Half of the gap value (2rem / 2) */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 100%;  /* Adjust as needed for visual balance */
+    width: 1px;
+    background-color: white;
+}
+
+.session-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.option-box {
+    cursor: pointer;
+    width: 100%;
+    height: 8rem;
+    border-radius: 1rem;
+    background: repeating-linear-gradient(to bottom, #081627 0%, #191919 100%);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.selected-box {
+    border: 1px solid white;
+}
+
+.option-box:hover {
+    transform: scale(1.04);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

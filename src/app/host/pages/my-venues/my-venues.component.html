@@ -1,0 +1,9 @@
+<div class="main-container">
+    <div class="my-venues-header">
+        <h1>Mis Venues:</h1>
+        <p-button icon="pi pi-plus" (click)="onToCreateVenue()" label="Nuevo Venue"></p-button>
+    </div>
+    <div class="my-venues-container">
+        <app-venue-card [venue]="venue" *ngFor="let venue of venues"></app-venue-card>
+    </div>
+</div>

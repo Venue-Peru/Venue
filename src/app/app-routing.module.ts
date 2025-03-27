@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {EventsListComponent} from "./sessions/pages/events-list/events-list.component";
 import {MainPagesComponent} from "./public/pages/main-pages/main-pages.component";
-import {EventViewComponent} from "./sessions/pages/event-view/event-view.component";
 import {MyWristbandsComponent} from "./ticketing/pages/my-wristbands/my-wristbands.component";
 import {ProfileVisitorComponent} from "./profiles/pages/profile-vistor/profile-visitor.component";
 import {SessionVisitorComponent} from "./sessions/pages/session-visitor/session-visitor.component";
@@ -17,7 +15,6 @@ import {CreateSessionComponent} from "./host/pages/create-session/create-session
 import {MySessionsComponent} from "./host/pages/my-sessions/my-sessions.component";
 import {SearchFilterComponent} from "./sessions/pages/search-filter/search-filter.component";
 import {ForgotPasswordComponent} from "./iam/pages/forgot-password/forgot-password.component";
-import {authenticationGuard} from "./iam/services/auth.guard";
 import {hostGuard} from "./iam/services/host.guard";
 import {userGuard} from "./iam/services/user.guard";
 import {authenticatedGuard} from "./iam/services/authenticated.guard";

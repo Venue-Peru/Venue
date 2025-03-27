@@ -1,0 +1,45 @@
+<div style="min-height: 64vh; background-color: black"
+     class="flex align-items-center justify-content-center"
+>
+    <app-loading *ngIf="isLoading()" [height]="64"></app-loading>
+    <div *ngIf="!isLoading && !areThereFeaturedSession()" style="width:100%;">
+        <div class="flex justify-content-between p-8">
+            <div class="flex justify-content-center align-items-center">
+                <div>
+                    <h1>Explora nuestro gran catálogo de Sessions</h1>
+                    <p>En Venue hay un evento para todos</p>
+                </div>
+            </div>
+            <div>
+                <div class="container">
+                    <div class="square blue"></div>
+                    <div class="square orange"></div>
+                    <div class="square yellow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="flex align-items-center justify-content-center gap-2 p-4">
+            <p>Empieza escribiendo lo que deseas en la barra de búsqueda</p>
+            <i class="pi pi-search" style="font-size: 1.5rem"></i>
+        </div>
+    </div>
+    <div *ngIf="areThereFeaturedSession()" style="width: 100%;">
+        <div class="grid">
+            <div *ngFor="let session of featuredSessions; let i = index"
+                 class="image-to-click p-4"
+                 (click)="onToSession(session)"
+                 [class]="i % 4 === 0 ? 'col-4' : (i % 4 === 1 ? 'col-8' : 'col-6')">
+
+                <!-- Inner container for the background image and its transition -->
+                <div class="scale-effect" [ngStyle]="{'background-image': 'url(' + session.sessionImage + ')'}">
+                </div>
+
+                <!-- Overlay for gradient and text -->
+                <div class="text-overlay">
+                    <h1>{{ session.name }}</h1>
+                    <h2>Planificado para el: {{ session.date }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
